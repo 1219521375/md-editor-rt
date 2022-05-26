@@ -1,4 +1,4 @@
-import{u as a,r as i,R as e,E as h}from"./index.f4097731.js";var s=`## About md-editor-v3
+import{u as h,r as i,R as e,E as a}from"./index.7f06a814.js";var s=`## About md-editor-v3
 
 ![](https://img.shields.io/github/stars/imzbf/md-editor-rt?style=social) ![](https://img.shields.io/npm/dm/md-editor-rt) ![](https://img.shields.io/bundlephobia/min/md-editor-rt) ![](https://img.shields.io/github/license/imzbf/md-editor-rt) ![](https://img.shields.io/github/package-json/v/imzbf/md-editor-rt) ![](https://img.shields.io/badge/ssr-%3E1.6.0-brightgreen)
 
@@ -32,4 +32,4 @@ Markdown \u7F16\u8F91\u5668\uFF0Creact \u7248\u672C\uFF0C\u4F7F\u7528 jsx \u548C
 1. \u90AE\u7BB1\uFF1Azbfcqtl@gmail.com
 2. \u535A\u5BA2\u7559\u8A00\uFF1A[imzbf.cc](https://imzbf.cc/message)
 3. issue \u7BA1\u7406\uFF1A[github issues](https://github.com/imzbf/md-editor-rt/issues)
-`;const l=()=>{const t=a(n=>n),[m,o]=i.exports.useState(()=>t.lang==="zh-CN"?r:s),d=()=>{o(t.lang==="en-US"?s:r)};return i.exports.useEffect(d,[t.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement("div",{className:"content",style:{width:"100%"}},e.createElement(h,{theme:t.theme,modelValue:m,previewTheme:t.previewTheme,previewOnly:!0,showCodeRowNumber:!0}))))};export{l as default};
+`;const l=()=>{const t=h(n=>n),[m,o]=i.exports.useState(()=>t.lang==="zh-CN"?r:s),d=()=>{o(t.lang==="en-US"?s:r)};return i.exports.useEffect(d,[t.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement("div",{className:"content",style:{width:"100%"}},e.createElement(a,{theme:t.theme,codeTheme:t.codeTheme,modelValue:m,previewTheme:t.previewTheme,previewOnly:!0,showCodeRowNumber:!0}))))};export{l as default};

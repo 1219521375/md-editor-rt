@@ -1,4 +1,4 @@
-import{u as m,r as t,R as e,E as o}from"./index.f4097731.js";var r=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
+import{u as m,r as t,R as e,E as o}from"./index.7f06a814.js";var r=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
 
 ## \u{1F92F} Props
 
@@ -1755,4 +1755,4 @@ export default () => {
 ## \u270D\uFE0F \u7F16\u8F91\u6B64\u9875\u9762
 
 [doc-zh-CN](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/doc-zh-CN.md)
-`,p=()=>{const n=m(l=>l),[s,d]=t.exports.useState(()=>n.lang==="zh-CN"?i:r),a=()=>{d(n.lang==="en-US"?r:i)};return t.exports.useEffect(a,[n.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement("div",{className:"content"},e.createElement(o,{editorId:"doc-preview",theme:n.theme,language:n.lang,modelValue:s,previewTheme:n.previewTheme,previewOnly:!0,showCodeRowNumber:!0})),e.createElement("div",{className:"catalog"},e.createElement("div",{className:"affix"},e.createElement(o.MdCatalog,{editorId:"doc-preview",theme:n.theme,scrollElement:document.documentElement})))))};export{p as default};
+`,p=()=>{const n=m(l=>l),[s,d]=t.exports.useState(()=>n.lang==="zh-CN"?i:r),a=()=>{d(n.lang==="en-US"?r:i)};return t.exports.useEffect(a,[n.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement("div",{className:"content"},e.createElement(o,{editorId:"doc-preview",theme:n.theme,codeTheme:n.codeTheme,language:n.lang,modelValue:s,previewTheme:n.previewTheme,previewOnly:!0,showCodeRowNumber:!0})),e.createElement("div",{className:"catalog"},e.createElement("div",{className:"affix"},e.createElement(o.MdCatalog,{editorId:"doc-preview",theme:n.theme,scrollElement:document.documentElement})))))};export{p as default};

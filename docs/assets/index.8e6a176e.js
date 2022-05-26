@@ -1,4 +1,4 @@
-import{u as d,r as n,R as t,E as c}from"./index.f4097731.js";var s=`## Upgrade from 1.x to 2.x
+import{u as d,r as n,R as t,E as c}from"./index.7f06a814.js";var s=`## Upgrade from 1.x to 2.x
 
 This is the content that 2.x is incompatible with version 1.x only.
 
@@ -70,4 +70,4 @@ This is the content that 2.x is incompatible with version 1.x only.
   \`Editor.Catalog\`\u7EC4\u4EF6\u540D\u79F0\u4FEE\u6539\u4E3A\`Editor.MdCatalog\`\u3002
 
   \u66F4\u591A\u8BF7\u53C2\u8003\u4F7F\u7528[docs](https://github.com/imzbf/md-editor-rt/tree/docs)\u5206\u652F\u3002
-`;const l=()=>{const e=d(m=>m),[a,o]=n.exports.useState(()=>e.lang==="zh-CN"?r:s),i=()=>{o(e.lang==="en-US"?s:r)};return n.exports.useEffect(i,[e.lang]),t.createElement("div",{className:"container"},t.createElement("div",{className:"doc"},t.createElement("div",{className:"content",style:{width:"100%"}},t.createElement(c,{theme:e.theme,modelValue:a,previewTheme:e.previewTheme,previewOnly:!0,showCodeRowNumber:!0,codeTheme:e.codeTheme}))))};export{l as default};
+`;const l=()=>{const e=d(m=>m),[a,o]=n.exports.useState(()=>e.lang==="zh-CN"?r:s),i=()=>{o(e.lang==="en-US"?s:r)};return n.exports.useEffect(i,[e.lang]),t.createElement("div",{className:"container"},t.createElement("div",{className:"doc"},t.createElement("div",{className:"content",style:{width:"100%"}},t.createElement(c,{theme:e.theme,codeTheme:e.codeTheme,modelValue:a,previewTheme:e.previewTheme,previewOnly:!0,showCodeRowNumber:!0}))))};export{l as default};

@@ -1,4 +1,4 @@
-import{u as m,r as n,R as t,E as r}from"./index.f4097731.js";var o=`## \u{1F601} Basic Usage
+import{u as m,r as n,R as t,E as r}from"./index.7f06a814.js";var o=`## \u{1F601} Basic Usage
 
 It has been developing iteratively, so update the latest version please. Publish logs: [releases](https://github.com/imzbf/md-editor-rt/releases)
 
@@ -997,4 +997,4 @@ export default () => {
 ## \u{1F9FB} \u7F16\u8F91\u6B64\u9875\u9762
 
 [demo-zh-CN](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/demo-zh-CN.md)
-`,u=()=>{const e=m(l=>l),[s,d]=n.exports.useState(()=>e.lang==="zh-CN"?i:o),a=()=>{d(e.lang==="en-US"?o:i)};return n.exports.useEffect(a,[e.lang]),t.createElement("div",{className:"container"},t.createElement("div",{className:"doc"},t.createElement("div",{className:"content"},t.createElement(r,{editorId:"demo-preview",theme:e.theme,language:e.lang,modelValue:s,previewTheme:e.previewTheme,previewOnly:!0,showCodeRowNumber:!0})),t.createElement("div",{className:"catalog"},t.createElement("div",{className:"affix"},t.createElement(r.MdCatalog,{editorId:"demo-preview",theme:e.theme,scrollElement:document.documentElement})))))};export{u as default};
+`,u=()=>{const e=m(l=>l),[s,d]=n.exports.useState(()=>e.lang==="zh-CN"?i:o),a=()=>{d(e.lang==="en-US"?o:i)};return n.exports.useEffect(a,[e.lang]),t.createElement("div",{className:"container"},t.createElement("div",{className:"doc"},t.createElement("div",{className:"content"},t.createElement(r,{editorId:"demo-preview",theme:e.theme,codeTheme:e.codeTheme,language:e.lang,modelValue:s,previewTheme:e.previewTheme,previewOnly:!0,showCodeRowNumber:!0})),t.createElement("div",{className:"catalog"},t.createElement("div",{className:"affix"},t.createElement(r.MdCatalog,{editorId:"demo-preview",theme:e.theme,scrollElement:document.documentElement})))))};export{u as default};
