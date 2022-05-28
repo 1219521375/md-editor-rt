@@ -1,4 +1,4 @@
-import{u as d,r as n,R as t,E as c}from"./index.3d392dc6.js";var s=`## Upgrade from 1.x to 2.x
+import{u as d,r as n,R as t,E as c}from"./index.9c5e437e.js";var s=`## Upgrade from 1.x to 2.x
 
 This is the content that 2.x is incompatible with version 1.x only.
 
@@ -6,7 +6,7 @@ This is the content that 2.x is incompatible with version 1.x only.
 
 | name                | description                              |
 | ------------------- | ---------------------------------------- |
-| editorClass         | rename to \`class\`                        |
+| editorClass         | rename to \`className\`                    |
 | hljs                | removed, use \`MdEditor.config\` to config |
 | highlightJs         | the same                                 |
 | highlightCss        | the same                                 |
@@ -41,7 +41,7 @@ This is the content that 2.x is incompatible with version 1.x only.
 
 | \u540D\u79F0                | \u8BF4\u660E                              |
 | ------------------- | --------------------------------- |
-| editorClass         | \u4FEE\u6539\u4E3A\`class\`                     |
+| editorClass         | \u4FEE\u6539\u4E3A\`className\`                 |
 | hljs                | \u5DF2\u79FB\u9664\uFF0C\u4F7F\u7528\`MdEditor.config\`\u914D\u7F6E |
 | highlightJs         | \u540C\u4E0A                              |
 | highlightCss        | \u540C\u4E0A                              |

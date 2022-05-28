@@ -1,4 +1,4 @@
-import{u as m,r as t,R as e,E as o}from"./index.3d392dc6.js";var r=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
+import{u as m,r as t,R as e,E as o}from"./index.9c5e437e.js";var r=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
 
 ## \u{1F92F} Props
 
@@ -22,11 +22,11 @@ import{u as m,r as t,R as e,E as o}from"./index.3d392dc6.js";var r=`> Use it onl
   <MdEditor theme="dark" />
   \`\`\`
 
-### \u{1F380} class
+### \u{1F380} className
 
 - **type**: \`string\`
 - **default**: \`''\`
-- **description**: Editor \`class\`.
+- **description**: Editor \`className\`.
 
 ### \u{1F90F}\u{1F3FC} historyLength
 
@@ -824,7 +824,7 @@ usage:
 - **props**
 
   - \`editorId\`: \`string\`, necessary, editor's \`editorId\`, used to register listening events.
-  - \`class\`: \`string\`, not necessary.
+  - \`className\`: \`string\`, not necessary.
   - \`markedHeadingId\`: \`MarkedHeadingId\`, not necessary, same as editor.
   - \`scrollElement\`: \`string | HTMLElement\`, not necessary, it is an element selector when its type is string. When \`previewOnly\` eq \`true\`, it is usually set to \`document.documentElement\`.
   - \`theme\`: 'light' | 'dark', not necessary, provide it when you want to change theme online, it is the same as Editor \`theme\`.
@@ -878,11 +878,11 @@ export default () => {
   <MdEditor theme="dark" />
   \`\`\`
 
-### \u{1F380} class
+### \u{1F380} className
 
 - **\u7C7B\u578B**\uFF1A\`string\`
 - **\u9ED8\u8BA4\u503C**\uFF1A\`''\`
-- **\u8BF4\u660E**\uFF1A\u7F16\u8F91\u5668\`class\`\u3002
+- **\u8BF4\u660E**\uFF1A\u7F16\u8F91\u5668\`className\`\u3002
 
 ### \u{1F90F}\u{1F3FC} historyLength
 
@@ -1727,7 +1727,7 @@ async onUploadImg(files, callback) {
 - **props**
 
   - \`editorId\`: \`string\`\uFF0C\u5FC5\u987B\uFF0C\u5BF9\u5E94\u7F16\u8F91\u5668\u7684\`editorId\`\uFF0C\u5728\u5185\u90E8\u6CE8\u518C\u76EE\u5F55\u53D8\u5316\u76D1\u542C\u4E8B\u4EF6\u3002
-  - \`class\`: \`string\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u76EE\u5F55\u7EC4\u4EF6\u6700\u5916\u5C42\u7C7B\u540D\u3002
+  - \`className\`: \`string\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u76EE\u5F55\u7EC4\u4EF6\u6700\u5916\u5C42\u7C7B\u540D\u3002
   - \`markedHeadingId\`: \`MarkedHeadingId\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u7279\u6B8A\u5316\u7F16\u8F91\u5668\u6807\u9898\u7684\u7B97\u6CD5\uFF0C\u4E0E\u7F16\u8F91\u5668\u76F8\u540C\u3002
   - \`scrollElement\`: \`string | HTMLElement\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u4E3A\u5B57\u7B26\u65F6\u5E94\u662F\u4E00\u4E2A\u5143\u7D20\u9009\u62E9\u5668\u3002\u4EC5\u9884\u89C8\u6A21\u5F0F\u4E2D\uFF0C\u6574\u9875\u6EDA\u52A8\u65F6\uFF0C\u8BBE\u7F6E\u4E3A\`document.documentElement\`\u3002
   - \`theme\`: \`'light' | 'dark'\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u5F53\u9700\u8981\u5207\u6362\u4E3B\u9898\u65F6\u63D0\u4F9B\uFF0C\u540C\u7F16\u8F91\u5668\u7684\`theme\`\u3002
@@ -1755,4 +1755,4 @@ export default () => {
 ## \u270D\uFE0F \u7F16\u8F91\u6B64\u9875\u9762
 
 [doc-zh-CN](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/doc-zh-CN.md)
-`,p=()=>{const n=m(l=>l),[s,d]=t.exports.useState(()=>n.lang==="zh-CN"?i:r),a=()=>{d(n.lang==="en-US"?r:i)};return t.exports.useEffect(a,[n.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement("div",{className:"content"},e.createElement(o,{editorId:"doc-preview",theme:n.theme,codeTheme:n.codeTheme,language:n.lang,modelValue:s,previewTheme:n.previewTheme,previewOnly:!0,showCodeRowNumber:!0})),e.createElement("div",{className:"catalog"},e.createElement("div",{className:"affix"},e.createElement(o.MdCatalog,{editorId:"doc-preview",theme:n.theme,scrollElement:document.documentElement})))))};export{p as default};
+`,p=()=>{const n=m(l=>l),[s,a]=t.exports.useState(()=>n.lang==="zh-CN"?i:r),d=()=>{a(n.lang==="en-US"?r:i)};return t.exports.useEffect(d,[n.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement("div",{className:"content"},e.createElement(o,{editorId:"doc-preview",theme:n.theme,codeTheme:n.codeTheme,language:n.lang,modelValue:s,previewTheme:n.previewTheme,previewOnly:!0,showCodeRowNumber:!0})),e.createElement("div",{className:"catalog"},e.createElement("div",{className:"affix"},e.createElement(o.MdCatalog,{editorId:"doc-preview",theme:n.theme,scrollElement:document.documentElement})))))};export{p as default};
