@@ -1,4 +1,4 @@
-import{u as m,r as t,R as e,E as o}from"./index.9c5e437e.js";var r=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
+import{u as m,r as t,R as e,E as o}from"./index.99bee34d.js";var r=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
 
 ## \u{1F92F} Props
 
