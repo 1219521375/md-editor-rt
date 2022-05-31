@@ -1,4 +1,4 @@
-import{u as m,r as n,R as t,E as r}from"./index.99bee34d.js";var o=`## \u{1F601} Basic Usage
+import{u as m,r as n,R as t,E as r}from"./index.776ebba4.js";var o=`## \u{1F601} Basic Usage
 
 It has been developing iteratively, so update the latest version please. Publish logs: [releases](https://github.com/imzbf/md-editor-rt/releases)
 

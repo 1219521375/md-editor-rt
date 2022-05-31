@@ -1,4 +1,4 @@
-import{u as m,r as t,R as e,E as o}from"./index.99bee34d.js";var r=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
+import{u as m,r as t,R as e,E as o}from"./index.776ebba4.js";var r=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
 
 ## \u{1F92F} Props
 
@@ -62,7 +62,7 @@ import{u as m,r as t,R as e,E as o}from"./index.99bee34d.js";var r=`> Use it onl
 
 - **type**: \`string\`
 - **default**: \`'zh-CN'\`
-- **description**: Build-in language('zh-CN','en-US').
+- **description**: Build-in language('zh-CN', 'en-US').
 
 ### \u{1F9F1} toolbars
 
@@ -221,7 +221,7 @@ import{u as m,r as t,R as e,E as o}from"./index.99bee34d.js";var r=`> Use it onl
     return (
       <MdEditor
         modelValue=""
-        toolbars=['github','=', 0]
+        toolbars=['github', '=', 0]
         defToolbars={[
           <NormalToolbar
             title="mark"
@@ -341,12 +341,12 @@ import{u as m,r as t,R as e,E as o}from"./index.99bee34d.js";var r=`> Use it onl
 ### \u{1F4BE} onSave
 
 - **type**: \`(v: string) => void\`
-- **description**: Save Content event,\`ctrl+s\`and click button will trigger.
+- **description**: Save Content event, \`ctrl+s\` and click button will trigger.
 
 ### \u{1F4F8} onUploadImg
 
-- **type**: \`(files: Array<File>, callback: function) => void\`
-- **description**: Upload picture event,when picture is uploading the modal will not close,please provide right urls to the callback function.
+- **type**: \`(files: Array<File>, callback: (urls: Array<string>) => void) => void\`
+- **description**: Upload picture event, when picture is uploading the modal will not close, please provide right urls to the callback function.
 
 \`\`\`js
 async onUploadImg(files, callback) {
@@ -375,7 +375,7 @@ async onUploadImg(files, callback) {
 ### \u260E\uFE0F onHtmlChanged
 
 - **type**: \`(h: string) => void\`
-- **description**: Compile markdown successful event,you can use it to get the html code.
+- **description**: Compile markdown successful event, you can use it to get the html code.
 
 ### \u{1F5D2} onGetCatalog
 
@@ -926,7 +926,7 @@ export default () => {
 
 - **\u7C7B\u578B**\uFF1A\`string\`
 - **\u9ED8\u8BA4\u503C**\uFF1A\`'zh-CN'\`
-- **\u8BF4\u660E**\uFF1A\u5185\u7F6E\u4E2D\u82F1\u6587(\`'zh-CN'\`,\`'en-US'\`)\uFF0C\u53EF\u81EA\u884C\u6269\u5C55\u5176\u4ED6\u8BED\u8A00\uFF0C\u540C\u65F6\u53EF\u8986\u76D6\u5185\u7F6E\u7684\u4E2D\u82F1\u6587\u3002
+- **\u8BF4\u660E**\uFF1A\u5185\u7F6E\u4E2D\u82F1\u6587(\`'zh-CN'\`, \`'en-US'\`)\uFF0C\u53EF\u81EA\u884C\u6269\u5C55\u5176\u4ED6\u8BED\u8A00\uFF0C\u540C\u65F6\u53EF\u8986\u76D6\u5185\u7F6E\u7684\u4E2D\u82F1\u6587\u3002
 
 ### \u{1F9F1} toolbars
 
@@ -1118,7 +1118,7 @@ export default () => {
     return (
       <MdEditor
         modelValue=""
-        toolbars=['github','=', 0]
+        toolbars=['github', '=', 0]
         defToolbars={[
           <NormalToolbar
             title="mark"
@@ -1248,7 +1248,7 @@ export default () => {
 
 ### \u{1F4F8} onUploadImg
 
-- **\u7C7B\u578B**\uFF1A\`(files: Array<File>, callback: function) => void\`
+- **\u7C7B\u578B**\uFF1A\`(files: Array<File>, callback: (urls: Array<string>) => void) => void\`
 - **\u8BF4\u660E**\uFF1A\u4E0A\u4F20\u56FE\u7247\u4E8B\u4EF6\uFF0C\u5F39\u7A97\u4F1A\u7B49\u5F85\u4E0A\u4F20\u7ED3\u679C\uFF0C\u52A1\u5FC5\u5C06\u4E0A\u4F20\u540E\u7684 urls \u4F5C\u4E3A callback \u5165\u53C2\u56DE\u4F20\u3002
 
 \`\`\`js
