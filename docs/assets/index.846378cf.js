@@ -1,4 +1,4 @@
-import{u as h,r as i,R as e,E as a}from"./index.e7749d64.js";var s=`## About md-editor-v3
+import{u as h,r as i,R as e,E as a}from"./index.e48df44a.js";var s=`## About md-editor-rt
 
 ![](https://img.shields.io/github/stars/imzbf/md-editor-rt?style=social) ![](https://img.shields.io/npm/dm/md-editor-rt) ![](https://img.shields.io/bundlephobia/min/md-editor-rt) ![](https://img.shields.io/github/license/imzbf/md-editor-rt) ![](https://img.shields.io/github/package-json/v/imzbf/md-editor-rt) ![](https://img.shields.io/badge/ssr-%3E1.6.0-brightgreen)
 

@@ -1,4 +1,4 @@
-import{u as m,r as n,R as t,E as r}from"./index.e7749d64.js";var o=`## \u{1F601} Basic Usage
+import{u as m,r as n,R as t,E as r}from"./index.e48df44a.js";var o=`## \u{1F601} Basic Usage
 
 It has been developing iteratively, so update the latest version please. Publish logs: [releases](https://github.com/imzbf/md-editor-rt/releases)
 
@@ -309,6 +309,10 @@ MdEditor.config({
         katex: {
           inline: 'inline',
           block: 'block'
+        },
+        footer: {
+          markdownTotal: 'Word Count',
+          scrollAuto: 'Scroll Auto'
         }
       }
     }
@@ -806,6 +810,10 @@ MdEditor.config({
         katex: {
           inline: '\u884C\u5185\u516C\u5F0F',
           block: '\u5757\u7EA7\u516C\u5F0F'
+        },
+        footer: {
+          markdownTotal: '\u5B57\u6570',
+          scrollAuto: '\u540C\u6B65\u6EDA\u52A8'
         }
       }
     }
