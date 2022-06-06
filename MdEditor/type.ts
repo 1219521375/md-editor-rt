@@ -99,6 +99,10 @@ export interface StaticTextDefaultValue {
     inline: string;
     block: string;
   };
+  footer?: {
+    markdownTotal: string;
+    scrollAuto: string;
+  };
 }
 
 export interface StaticTextDefault {
@@ -109,6 +113,8 @@ export interface StaticTextDefault {
 export type StaticTextDefaultKey = keyof StaticTextDefault;
 
 export type ToolbarNames = keyof ToolbarTips | number;
+
+export type Footers = '=' | 'markdownTotal' | 'scrollSwitch' | number;
 
 export interface SettingType {
   pageFullScreen: boolean;
@@ -143,7 +149,7 @@ export type PreviewThemes = string; // 'default' | 'github' | 'vuepress';
 //   }
 // ) => string;
 
-export type MarkedHeadingId = (text: string, level: number) => string;
+export type MarkedHeadingId = (text: string, level: number, index: number) => string;
 
 export interface EditorProp {
   modelValue: string;
@@ -233,6 +239,9 @@ export interface EditorProp {
   // markedImage?: MarkedImage;
   onError?: (err: InnerError) => void;
   codeTheme?: string;
+  footers?: Array<Footers>;
+  scrollAuto?: boolean;
+  defFooters?: Array<string | ReactElement>;
 }
 
 export interface ContentType {

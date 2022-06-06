@@ -296,40 +296,6 @@ export const useMarked = (props: EditorContentProp) => {
   const [renderer] = useState(() => {
     let renderer = new marked.Renderer();
 
-    // 保存默认heading
-    const markedheading = renderer.heading;
-
-    if (markedRenderer instanceof Function) {
-      renderer = markedRenderer(renderer);
-    }
-
-    // ========heading========start
-    // 判断是否有重写heading
-    const newHeading = renderer.heading;
-    const isNewHeading = markedheading !== newHeading;
-
-    renderer.heading = (text, level, raw, slugger) => {
-      heads.current.push({ text: raw, level });
-
-      // 如果heading被重写了，使用新的heading
-      if (isNewHeading) {
-        return newHeading.call(renderer, text, level, raw, slugger);
-      }
-
-      // return props.markedHeading(...headProps);
-      // 我们默认同一级别的标题，你不会定义两个相同的
-      const id = props.markedHeadingId(raw, level);
-
-      // 如果标题有markdown语法内容，会按照该语法添加标题，而不再自定义，但是仍然支持目录定位
-      if (text !== raw) {
-        return `<h${level} id="${id}">${text}</h${level}>`;
-      } else {
-        return `<h${level} id="${id}"><a href="#${id}">${raw}</a></h${level}>`;
-      }
-    };
-    // ========heading========end
-
-    // ==========code==========start
     const markedCode = renderer.code;
     renderer.code = (code, language, isEscaped) => {
       if (!props.noMermaid && language === 'mermaid') {
@@ -367,22 +333,50 @@ export const useMarked = (props: EditorContentProp) => {
 
       return markedCode.call(renderer, code, language, isEscaped);
     };
-    // ==========code==========end
 
-    // ==========image=========start
-    renderer.image = (href, title, desc) => {
-      return `<span class="figure"><img src="${href}" title="${title}" alt="${desc}"><span class="figcaption">${desc}</span></span>`;
+    renderer.image = (href, title = '', desc = '') => {
+      return `<span class="figure"><img src="${href}" title="${title}" alt="${desc}" zoom><span class="figcaption">${desc}</span></span>`;
     };
-    // ==========image=========end
 
-    // ===========list==========start
     renderer.listitem = (text: string, task: boolean) => {
       if (task) {
         return `<li class="li-task">${text}</li>`;
       }
       return `<li>${text}</li>`;
     };
-    // ===========list==========end
+
+    // 保存默认heading，对比是否更新过
+    const markedheading = renderer.heading;
+
+    if (markedRenderer instanceof Function) {
+      renderer = markedRenderer(renderer);
+    }
+
+    // ========heading========start
+    // 判断是否有重写heading
+    const newHeading = renderer.heading;
+    const isNewHeading = markedheading !== newHeading;
+
+    renderer.heading = (text, level, raw, slugger) => {
+      heads.current.push({ text: raw, level });
+
+      // 如果heading被重写了，使用新的heading
+      if (isNewHeading) {
+        return newHeading.call(renderer, text, level, raw, slugger);
+      }
+
+      // return props.markedHeading(...headProps);
+      // 我们默认同一级别的标题，你不会定义两个相同的
+      const id = props.markedHeadingId(raw, level, heads.current.length);
+
+      // 如果标题有markdown语法内容，会按照该语法添加标题，而不再自定义，但是仍然支持目录定位
+      if (text !== raw) {
+        return `<h${level} id="${id}">${text}</h${level}>`;
+      } else {
+        return `<h${level} id="${id}"><a href="#${id}">${raw}</a></h${level}>`;
+      }
+    };
+    // ========heading========end
 
     marked.setOptions({
       breaks: true,
@@ -639,9 +633,9 @@ export const useAutoScroll = (
     init() {}
   });
 
+  // 初始化滚动事件
   useEffect(() => {
-    // 初始化滚动事件
-    if (previewRef.current || htmlRef.current) {
+    if (!previewOnly && (previewRef.current || htmlRef.current)) {
       const [init, clear] = scrollAuto(
         textAreaRef.current as HTMLElement,
         (previewRef.current as HTMLElement) || htmlRef.current
@@ -654,9 +648,9 @@ export const useAutoScroll = (
     }
   }, []);
 
+  // 更新完毕后判断是否需要重新绑定滚动事件
   useEffect(() => {
-    // 更新完毕后判断是否需要重新绑定滚动事件
-    if (props.setting.preview && !previewOnly) {
+    if (props.setting.preview && !previewOnly && props.scrollAuto) {
       setTimeout(() => {
         scrollCb.clear();
         scrollCb.init();
@@ -664,15 +658,19 @@ export const useAutoScroll = (
     }
   }, [html]);
 
+  // 我们默认，不会发生直接将编辑器切换成预览模式的行为
+  // 分栏发生变化时，显示分栏时注册同步滚动，隐藏时清除同步滚动
   useEffect(() => {
-    // 我们默认不发生直接将编辑器切换成预览模式的行为
-    // 分栏发生变化时，显示分栏时注册同步滚动，隐藏是清除同步滚动
-    if (props.setting.preview && !previewOnly) {
+    if (
+      (props.setting.preview || props.setting.htmlPreview) &&
+      !previewOnly &&
+      props.scrollAuto
+    ) {
       scrollCb.clear();
       // 需要等到页面挂载完成后再注册，否则不能正确获取到预览dom
       const [init, clear] = scrollAuto(
         textAreaRef.current as HTMLElement,
-        previewRef.current as HTMLElement
+        (previewRef.current as HTMLElement) || (htmlRef.current as HTMLElement)
       );
 
       setScrollCb({
@@ -682,26 +680,16 @@ export const useAutoScroll = (
 
       init();
     }
-  }, [props.setting.preview, setScrollCb]);
+  }, [props.setting.preview, props.setting.htmlPreview]);
 
+  // 切换滚动状态时，重新设置同步滚动
   useEffect(() => {
-    // 分栏发生变化时，显示分栏时注册同步滚动，隐藏是清除同步滚动
-    if (props.setting.htmlPreview && !previewOnly) {
+    if (props.scrollAuto) {
+      scrollCb.init();
+    } else {
       scrollCb.clear();
-      // 需要等到页面挂载完成后再注册，否则不能正确获取到预览dom
-      const [init, clear] = scrollAuto(
-        textAreaRef.current as HTMLElement,
-        htmlRef.current as HTMLElement
-      );
-
-      setScrollCb({
-        init,
-        clear
-      });
-
-      init();
     }
-  }, [props.setting.htmlPreview, setScrollCb]);
+  }, [props.scrollAuto]);
 };
 
 export const usePasteUpload = (textAreaRef: RefObject<HTMLTextAreaElement>) => {
@@ -745,7 +733,7 @@ export const userZoom = (html: string) => {
 
   useEffect(() => {
     zoomHander = debounce(() => {
-      const imgs = document.querySelectorAll(`#${editorId}-preview img`);
+      const imgs = document.querySelectorAll(`#${editorId}-preview img[zoom]`);
 
       if (imgs.length === 0) {
         return;

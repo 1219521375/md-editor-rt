@@ -50,10 +50,10 @@ mark and emoji extensions
 | htmlPreview | boolean | false | Preview html in editor |
 | previewOnly | boolean | false | Only render article content, no toolbar, no edit area |
 | language | string | 'zh-CN' | Build-in language('zh-CN','en-US') |
-| toolbars | Array | [toolbars] | Show some item of toolbars, all keys<sup>see `toolbars` below</sup> |
-| toolbarsExclude | Array | [] | Don't show some item of toolbars, all keys`toolbars` |
+| toolbars | Array<ToolbarNames \| number> | [toolbars] | Show contents of toolbar, all keys<sup>see `toolbars` below</sup> |
+| toolbarsExclude | Array<ToolbarNames \| number> | [] | Don't show contents of toolbar, all keys`toolbars` |
 | noPrettier | boolean | false | Use prettier to beautify content or not |
-| editorId | string | md-editor-rt | Editor id, it is used when there are more than two editors in the same page. |
+| editorId | string | 'md-editor-rt' | Editor id, it is used when there are more than two editors in the same page |
 | tabWidth | number | 2 | One tab eq some spaces |
 | showCodeRowNumber | boolean | false | Show row number for code block or not |
 | previewTheme | 'default' \| 'github' \| 'vuepress' \| 'mk-cute' \| 'smart-blue' \| 'cyanosis' | 'default' | Preview theme, can be customized |
@@ -63,9 +63,12 @@ mark and emoji extensions
 | placeholder | string | '' |  |
 | noKatex | boolean | false | Use katex or not |
 | defToolbars | Array<DropdownToolbar \| NormalToolbar \| ModalToolbar> | null | Custom toolbar in `DropdownToolbar`, `NormalToolbar` or `ModalToolbar` |
-| codeTheme | 'atom' \| 'a11y' \| 'github' \| 'gradient' \| 'kimbie' \| 'paraiso' \| 'qtcreator' \| 'stackoverflow' | 'atom' | [Highlight](https://www.jsdelivr.com/package/npm/highlight.js?path=styles) code style, can be customized also |
-| markedHeadingId | (text: string, level: number) => string | (text) => text | H1-H6 `ID` generator |
+| codeTheme | 'atom' \| 'a11y' \| 'github' \| 'gradient' \| 'kimbie' \| 'paraiso' \| 'qtcreator' \| 'stackoverflow' | 'atom' | Highlight code style, can be customized also |
+| markedHeadingId | (text: string, level: number, index: number) => string | (text) => text | H1-H6 `ID` generator |
 | sanitize | (html: string) => string | (html) => html | Sanitize the html, prevent XSS |
+| footers | Array<'markdownTotal' \| '=' \| 'scrollSwitch' \| number> | ['markdownTotal', '=', 'scrollSwitch'] | Show contents of footer, they are divided by `'='`. Set it to `[]` to hidden footer |
+| scrollAuto | boolean | true | Scroll default setting |
+| defFooters | Array<string \| ReactElement> | null | Custom footer |
 
 <details>
  <summary>[toolbars]</summary>
@@ -210,14 +213,14 @@ export interface StaticTextDefaultValue {
 
 ### Event
 
-| name | param | description |
+| name | parameter | description |
 | --- | --- | --- |
-| onChange | v:string | Content changed event(bind to `oninput` of `textarea`) |
-| onSave | v:string | Save content event, `ctrl+s` and click button will be triggered also |
-| onUploadImg | files:Array<File>, callback:Function | Upload picture event, when picture is uploading the modal will not close, please provide right urls to the callback function |
-| onHtmlChanged | h:string | Compile markdown successful event, you can use it to get the html code |
-| onGetCatalog | list: HeadList[] | Get catalog of article |
-| onError | err: { name: string; message: string } | Catch run-time error, `Cropper`,`fullScreen` and `prettier` are used when they are not loaded |
+| onChange | `value: string` | Content changed event(bind to `oninput` of `textarea`) |
+| onSave | `value: string` | Save content event, `ctrl+s` and click button will be triggered also |
+| onUploadImg | `files: Array<File>, callback: (urls: Array<string>) => void` | Upload picture event, when picture is uploading the modal will not close, please provide right urls to the callback function |
+| onHtmlChanged | `html: string` | Compile markdown successful event, you can use it to get the html code |
+| onGetCatalog | `list: Array<HeadList>` | Get catalog of article |
+| onError | `error: { name: string; message: string }` | Catch run-time error, `Cropper`, `fullScreen` and `prettier` are used when they are not loaded |
 
 ## Config
 
@@ -287,7 +290,7 @@ Use `MdEditor.config(option: ConfigOption)` to reconfigure `renderer`.
 
 - editorExtensions: Config some dependency libraries, like highlight..
 
-  ```typescript
+  ```js
   import MdEditor from 'md-editor-rt';
 
   MdEditor.config({
@@ -340,7 +343,7 @@ Use `MdEditor.config(option: ConfigOption)` to reconfigure `renderer`.
 
   </details>
 
-### Shortcut key
+### Shortcut Key
 
 | key | function | description |
 | --- | --- | --- |
@@ -446,21 +449,21 @@ They are used as attributes of the editor component, eg: `Editor.DropdownToolbar
 
 ## Examples
 
-### Jsx module
+### Jsx Module
 
 ```js
 import React, { useState } from 'react';
 import MdEditor from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css';
 
-export default function App() {
+export default () => {
   const [text, setText] = useState('# Hello Editor');
 
-  return <Editor modelValue={text} onChange={setText} />;
-}
+  return <MdEditor modelValue={text} onChange={setText} />;
+};
 ```
 
-### Upload picture
+### Upload Picture
 
 > Tips: When you paste and upload GIF, it will upload a static picture. So you should upload it by file system!
 
@@ -469,7 +472,7 @@ import React, { useState } from 'react';
 import MdEditor from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css';
 
-export default function App() {
+export default () => {
   const [text, setText] = useState('# Hello Editor');
 
   const onUploadImg = async (files, callback) => {
@@ -494,8 +497,8 @@ export default function App() {
     callback(res.map((item) => item.data.url));
   };
 
-  return <Editor modelValue={text} onChange={setText} onUploadImg={onUploadImg} />;
-}
+  return <MdEditor modelValue={text} onChange={setText} onUploadImg={onUploadImg} />;
+};
 ```
 
 ### Change Styles

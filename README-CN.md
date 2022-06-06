@@ -45,24 +45,27 @@ react 版本的 Markdown 编辑器，[md-editor-v3](https://imzbf.github.io/md-e
 | pageFullScreen | boolean | false | 页面内全屏 |
 | preview | boolean | true | 是否预览 |
 | htmlPreview | boolean | false | 是否 html 预览 |
-| previewOnly | boolean | false | 仅预览模式，不显示 bar 和编辑框，_不支持响应式，仅能初始设置一次_ |
+| previewOnly | boolean | false | 仅预览模式，不显示 bar 和编辑框 |
 | language | string | 'zh-CN' | 内置中英文('zh-CN','en-US')，可自行扩展其他语言，同时可覆盖内置的中英文 |
-| toolbars | Array | [toolbars] | 选择性展示工具栏，可选内容<sup>见下方`toolbars`</sup> |
-| toolbarsExclude | Array | [] | 选择性不展示工具栏，内容同`toolbars` |
+| toolbars | Array<ToolbarNames \| number> | [toolbars] | 选择性展示工具栏，可选内容<sup>见下方`toolbars`</sup> |
+| toolbarsExclude | Array<ToolbarNames \| number> | [] | 选择性不展示工具栏，内容同`toolbars` |
 | noPrettier | boolean | false | 是否启用 prettier 优化 md 内容 |
-| editorId | string | md-editor-rt | 编辑器唯一标识，非必须项，当相同页面存在两个编辑器时，请务必区别该属性 |
+| editorId | string | 'md-editor-rt' | 编辑器唯一标识，非必须项，当相同页面存在两个编辑器时，请务必区别该属性 |
 | tabWidth | number | 2 | 编辑器 TAB 键位等于空格数 |
 | showCodeRowNumber | boolean | false | 代码块是否显示行号 |
 | previewTheme | 'default' \| 'github' \| 'vuepress' \| 'mk-cute' \| 'smart-blue' \| 'cyanosis' | 'default' | 预览内容主题，自定义主题规则见下方 |
 | style | string \| CSSProperties | {} | 编辑器内联样式 |
-| tableShape | [number, number] | [6, 4] | 标题栏添加表格时，预设待选表格大小，第一个代表最大列数，第二个代表最大行数。 |
+| tableShape | [number, number] | [6, 4] | 标题栏添加表格时，预设待选表格大小，第一个代表最大列数，第二个代表最大行数 |
 | noMermaid | boolean | false | 如果你不希望使用图表展示内容，可以设置关闭 |
 | placeholder | string | '' |  |
 | noKatex | boolean | false | 不使用 katex 展示数学公式 |
 | defToolbars | Array<DropdownToolbar \| NormalToolbar \| ModalToolbar> | null | 使用内置的组件自定义扩展工具栏 |
-| codeTheme | 'atom'\|'a11y'\|'github'\|'gradient'\|'kimbie'\|'paraiso'\|'qtcreator'\|'stackoverflow' | 'atom' | 代码块[highlight](https://www.jsdelivr.com/package/npm/highlight.js?path=styles)样式名称，扩展更多见下方 |
-| markedHeadingId | (text: string, level: number) => string | (text) => text | 标题`ID`计算方式 |
-| sanitize | (html: string) => string | (html) => html | 在每次生成 html 后，通过该方法移除危险内容，比如 xss 相关。 |
+| codeTheme | 'atom' \| 'a11y' \| 'github' \| 'gradient' \| 'kimbie' \| 'paraiso' \| 'qtcreator' \| 'stackoverflow' | 'atom' | 代码块[highlight](https://www.jsdelivr.com/package/npm/highlight.js?path=styles)样式名称，扩展更多见下方 |
+| markedHeadingId | (text: string, level: number, index: number) => string | (text) => text | 标题`ID`计算方式 |
+| sanitize | (html: string) => string | (html) => html | 在每次生成 html 后，通过该方法移除危险内容，比如 xss 相关 |
+| footers | Array<'markdownTotal' \| '=' \| 'scrollSwitch' \| number> | ['markdownTotal', '=', 'scrollSwitch'] | 页脚显示内容，`=`左右分割，设置为`[]`不显示页脚 |
+| scrollAuto | boolean | true | 默认左右滚动状态 |
+| defFooters | Array<string \| ReactElement> | [] | 自定义扩展页脚 |
 
 > 如果你重新定义了标题，请务必通过`markedHeadingId`告诉编辑器你生成标题 ID 的算法。以便生成的内部目录能够正确导航。
 
@@ -218,12 +221,12 @@ export interface StaticTextDefaultValue {
 
 | 名称 | 入参 | 说明 |
 | --- | --- | --- |
-| onChange | v:string | 内容变化事件（当前与`textare`的`oninput`事件绑定，每输入一个单字即会触发） |
-| onSave | v:string | 保存事件，快捷键与保存按钮均会触发 |
-| onUploadImg | files:Array<File>, callback:Function | 上传图片事件，弹窗会等待上传结果，务必将上传后的 urls 作为 callback 入参回传 |
-| onHtmlChanged | h:string | html 变化回调事件，用于获取预览 html 代码 |
-| onGetCatalog | list: HeadList[] | 动态获取`markdown`目录 |
-| onError | err: { name: string; message: string } | 运行错误反馈事件，目前包括`Cropper`、`fullScreen`、`prettier`实例未加载完成操作错误 |
+| onChange | `value: string` | 内容变化事件（当前与`textare`的`oninput`事件绑定，每输入一个单字即会触发） |
+| onSave | `value: string` | 保存事件，快捷键与保存按钮均会触发 |
+| onUploadImg | `files: Array<File>, callback: (urls: Array<string>) => void` | 上传图片事件，弹窗会等待上传结果，务必将上传后的 urls 作为 callback 入参回传 |
+| onHtmlChanged | `html: string` | html 变化回调事件，用于获取预览 html 代码 |
+| onGetCatalog | `list: Array<HeadList>` | 动态获取`markdown`目录 |
+| onError | `error: { name: string; message: string }` | 运行错误反馈事件，目前包括`Cropper`、`fullScreen`、`prettier`实例未加载完成操作错误 |
 
 ## 编辑器配置
 
@@ -295,7 +298,7 @@ export interface StaticTextDefaultValue {
 
 - editorExtensions: 类型如下，用于配置编辑器内部的扩展
 
-  ```typescript
+  ```js
   import MdEditor from 'md-editor-rt';
 
   MdEditor.config({
