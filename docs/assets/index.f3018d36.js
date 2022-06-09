@@ -1,4 +1,4 @@
-import{u as d,r as n,R as t,E as c}from"./index.e48df44a.js";var s=`## Upgrade from 1.x to 2.x
+import{u as d,r as n,R as t,E as c}from"./index.6717d522.js";var s=`## Upgrade from 1.x to 2.x
 
 This is the content that 2.x is incompatible with version 1.x only.
 
