@@ -82,7 +82,9 @@ export const useHistory = (
       textAreaRef.current as HTMLTextAreaElement,
       currHistory.startPos,
       currHistory.endPos
-    );
+    ).then(() => {
+      bus.emit(editorId, 'selectTextChange');
+    });
   };
 
   const saveHistory = (content: string) => {
@@ -119,9 +121,6 @@ export const useHistory = (
 
         // 下标调整为最后一个位置
         history.current.curr = history.current.list.length - 1;
-
-        // 保存记录后重新记录位置
-        saveHistoryPos();
       } else {
         history.current.userUpdated = true;
       }
@@ -142,6 +141,11 @@ export const useHistory = (
   }, [props.value, completeStatus]);
 
   useEffect(() => {
+    // 更新后清除选中内容
+    bus.emit(editorId, 'selectTextChange');
+  }, [props.value]);
+
+  useEffect(() => {
     bus.on(editorId, {
       name: 'ctrlZ',
       callback() {
@@ -160,8 +164,10 @@ export const useHistory = (
       }
     });
 
-    // textAreaRef.value.addEventListener('keydown', saveHistoryPos);
-    textAreaRef.current?.addEventListener('click', saveHistoryPos);
+    bus.on(editorId, {
+      name: 'saveHistoryPos',
+      callback: saveHistoryPos
+    });
   }, []);
 };
 
@@ -389,7 +395,11 @@ export const useMarked = (props: EditorContentProp) => {
         highlight: (code, language) => {
           let codeHtml = '';
           if (language) {
-            codeHtml = highlightIns.highlight(code, { language }).value;
+            try {
+              codeHtml = highlightIns.highlight(code, { language }).value;
+            } catch {
+              codeHtml = highlightIns.highlightAuto(code).value;
+            }
           } else {
             codeHtml = highlightIns.highlightAuto(code).value;
           }
@@ -444,7 +454,11 @@ export const useMarked = (props: EditorContentProp) => {
       highlight: (code, language) => {
         let codeHtml = '';
         if (language) {
-          codeHtml = window.hljs.highlight(code, { language }).value;
+          try {
+            codeHtml = window.hljs.highlight(code, { language }).value;
+          } catch {
+            codeHtml = window.hljs.highlightAuto(code).value;
+          }
         } else {
           codeHtml = window.hljs.highlightAuto(code).value;
         }
