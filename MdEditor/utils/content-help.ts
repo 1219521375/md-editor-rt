@@ -1,6 +1,7 @@
 import copy from 'copy-to-clipboard';
 import { insert, setPosition } from '.';
 import eventBus from './event-bus';
+import { configOption } from '../config';
 
 export type ToolDirective =
   | 'bold'
@@ -113,7 +114,7 @@ export const directive2flag = (
   // 后半部分
   let subfixVal;
 
-  const mermaidTemplate = params?.mermaidTemplate;
+  const mermaidTemplate = configOption.editorConfig?.mermaidTemplate;
 
   if (/^h[1-6]{1}$/.test(direct)) {
     const pix = direct.replace(/^h(\d)/, (_, num) => {
@@ -123,7 +124,16 @@ export const directive2flag = (
     targetValue = `${pix} ${selectedText}`;
     deviationStart = pix.length + 1;
   } else if (direct === 'prettier') {
-    if (!window.prettier) {
+    const prettier =
+      window.prettier || configOption.editorExtensions?.prettier?.prettierInstance;
+
+    const prettierPlugins =
+      window.prettierPlugins || [
+        configOption.editorExtensions?.prettier?.parserMarkdownInstance
+      ] ||
+      [];
+
+    if (!prettier || prettierPlugins[0] === undefined) {
       // CATCH ERROR: 捕获全局错误
       eventBus.emit(params.editorId, 'errorCatcher', {
         name: 'prettier',
@@ -132,9 +142,9 @@ export const directive2flag = (
       return inputArea.value;
     }
 
-    return window.prettier.format(inputArea.value, {
+    return prettier.format(inputArea.value, {
       parser: 'markdown',
-      plugins: window.prettierPlugins
+      plugins: prettierPlugins
     });
   } else {
     switch (direct) {

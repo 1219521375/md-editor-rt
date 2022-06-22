@@ -1,7 +1,7 @@
 import { CSSProperties, useCallback, useEffect, useMemo, useState } from 'react';
 import bus from './utils/event-bus';
 import { ToolDirective } from './utils/content-help';
-import { ConfigOption, EditorProp, InnerError, SettingType, ToolbarNames } from './type';
+import { EditorProp, InnerError, SettingType, ToolbarNames } from './type';
 import {
   prefix,
   iconfontUrl,
@@ -11,7 +11,8 @@ import {
   allToolbar,
   codeCss,
   highlightUrl,
-  staticTextDefault
+  staticTextDefault,
+  configOption
 } from './config';
 import { appendHandler } from './utils/dom';
 
@@ -37,8 +38,6 @@ export const useKeyBoard = (props: EditorProp) => {
     // 使用快捷键时，保存选中文本
     bus.emit(editorId, 'selectTextChange');
 
-    // 按键操作是否会替换内容
-    // let toReplaceValue = false;
     // macos中以meta键位配s键位为保存，windows中如此会被系统默认的事件替代
     if (event.ctrlKey || event.metaKey) {
       switch (event.code) {
@@ -332,48 +331,65 @@ export const useKeyBoard = (props: EditorProp) => {
  * @param props
  * @param extension
  */
-export const useExpansion = (props: EditorProp, extension: ConfigOption) => {
-  const { noPrettier, previewOnly } = props;
+export const useExpansion = (props: EditorProp) => {
+  const { noPrettier, previewOnly, noIconfont } = props;
+
+  const { editorExtensions } = configOption;
+
+  // 判断是否需要插入prettier标签
+  const noPrettierScript =
+    noPrettier || !!configOption.editorExtensions?.prettier?.prettierInstance;
+
+  // 判断是否需要插入prettier markdown扩展标签
+  const noParserMarkdownScript =
+    noPrettier || !!configOption.editorExtensions?.prettier?.parserMarkdownInstance;
+
+  // 判断是否需要插入裁剪图片标签
+  const noCropperScript = !!configOption.editorExtensions?.cropper?.instance;
 
   useEffect(() => {
     // 图标
     const iconfontScript = document.createElement('script');
-    iconfontScript.src = extension.editorExtensions?.iconfont || iconfontUrl;
+    iconfontScript.src = editorExtensions?.iconfont || iconfontUrl;
     iconfontScript.id = `${prefix}-icon`;
 
     // prettier
     const prettierScript = document.createElement('script');
     const prettierMDScript = document.createElement('script');
 
-    prettierScript.src =
-      extension.editorExtensions?.prettier?.standaloneJs || prettierUrl.main;
+    prettierScript.src = editorExtensions?.prettier?.standaloneJs || prettierUrl.main;
     prettierScript.id = `${prefix}-prettier`;
 
     prettierMDScript.src =
-      extension.editorExtensions?.prettier?.parserMarkdownJs || prettierUrl.markdown;
+      editorExtensions?.prettier?.parserMarkdownJs || prettierUrl.markdown;
     prettierMDScript.id = `${prefix}-prettierMD`;
 
     // 裁剪图片
     const cropperLink = document.createElement('link');
     cropperLink.rel = 'stylesheet';
-    cropperLink.href = extension.editorExtensions?.cropper?.css || cropperUrl.css;
+    cropperLink.href = editorExtensions?.cropper?.css || cropperUrl.css;
     cropperLink.id = `${prefix}-cropperCss`;
 
     const cropperScript = document.createElement('script');
-    cropperScript.src = extension.editorExtensions?.cropper?.js || cropperUrl.js;
+    cropperScript.src = editorExtensions?.cropper?.js || cropperUrl.js;
     cropperScript.id = `${prefix}-cropper`;
 
     // 非仅预览模式才添加扩展
     if (!previewOnly) {
-      appendHandler(iconfontScript);
+      if (!noIconfont) {
+        appendHandler(iconfontScript);
+      }
 
-      if (!extension.editorExtensions?.cropper?.instance) {
+      if (!noCropperScript) {
         appendHandler(cropperLink);
         appendHandler(cropperScript);
       }
 
-      if (!noPrettier) {
+      if (!noPrettierScript) {
         appendHandler(prettierScript);
+      }
+
+      if (!noParserMarkdownScript) {
         appendHandler(prettierMDScript);
       }
     }
@@ -486,11 +502,11 @@ let bodyOverflowHistory = '';
  * @param extension
  * @returns
  */
-export const useConfig = (props: EditorProp, extension: ConfigOption) => {
+export const useConfig = (props: EditorProp) => {
   const { theme = 'light', codeTheme = 'atom', language = 'zh-CN' } = props;
 
   const highlight = useMemo(() => {
-    const highlightConfig = extension?.editorExtensions?.highlight;
+    const highlightConfig = configOption?.editorExtensions?.highlight;
 
     const cssList = {
       ...codeCss,
@@ -507,7 +523,7 @@ export const useConfig = (props: EditorProp, extension: ConfigOption) => {
   const usedLanguageText = useMemo(() => {
     const allText: any = {
       ...staticTextDefault,
-      ...extension?.editorConfig?.languageUserDefined
+      ...configOption?.editorConfig?.languageUserDefined
     };
 
     if (allText[language]) {

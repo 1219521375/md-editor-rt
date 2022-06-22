@@ -15,7 +15,7 @@ import { directive2flag, ToolDirective } from '../../utils/content-help';
 import bus from '../../utils/event-bus';
 import { EditorContentProp } from './';
 import { EditorContext } from '../../Editor';
-import { prefix, katexUrl, mermaidUrl } from '../../config';
+import { prefix, katexUrl, mermaidUrl, configOption } from '../../config';
 import { appendHandler, updateHandler } from '../../utils/dom';
 import kaTexExtensions from '../../utils/katex';
 
@@ -135,9 +135,12 @@ export const useHistory = (
     }, 150);
   };
 
-  const saveHistoryPos = () => {
+  /**
+   * @param force 是否强制更新光标历史
+   */
+  const saveHistoryPos = (force: boolean) => {
     // 如果不是初始值，代表上次记录未插入输入历史
-    if (historyPos.current === POSITION_START) {
+    if (historyPos.current === POSITION_START || force) {
       historyPos.current = [
         textAreaRef.current?.selectionStart || 0,
         textAreaRef.current?.selectionEnd || 0
@@ -264,7 +267,6 @@ export const useAutoGenrator = (
         {
           ...params,
           tabWidth,
-          mermaidTemplate: props.mermaidTemplate,
           editorId
         }
       )
@@ -290,12 +292,12 @@ export const useAutoGenrator = (
 
 export const useMarked = (props: EditorContentProp) => {
   const { onHtmlChanged = () => {}, onGetCatalog = () => {} } = props;
-  const { editorId, usedLanguageText, showCodeRowNumber, extension, highlight } =
+  const { editorId, usedLanguageText, showCodeRowNumber, highlight } =
     useContext(EditorContext);
 
-  const { markedRenderer, markedOptions, markedExtensions, editorConfig } = extension;
-  const highlightIns = extension.editorExtensions?.highlight?.instance;
-  const mermaidIns = extension.editorExtensions?.mermaid?.instance;
+  const { markedRenderer, markedOptions, markedExtensions, editorConfig } = configOption;
+  const highlightIns = configOption.editorExtensions?.highlight?.instance;
+  const mermaidIns = configOption.editorExtensions?.mermaid?.instance;
 
   // 当页面已经引入完成对应的库时，通过修改从状态完成marked重新编译
   const [highlightInited, setHighlightInited] = useState<boolean>(() => {
@@ -351,8 +353,10 @@ export const useMarked = (props: EditorContentProp) => {
       return markedCode.call(renderer, code, language, isEscaped);
     };
 
-    renderer.image = (href, title = '', desc = '') => {
-      return `<span class="figure"><img src="${href}" title="${title}" alt="${desc}" zoom><span class="figcaption">${desc}</span></span>`;
+    renderer.image = (href, title, desc) => {
+      return `<span class="figure"><img src="${href}" title="${title || ''}" alt="${
+        desc || ''
+      }" zoom><span class="figcaption">${desc || ''}</span></span>`;
     };
 
     renderer.listitem = (text: string, task: boolean) => {
@@ -408,7 +412,7 @@ export const useMarked = (props: EditorContentProp) => {
           const hljsLang = highlightIns.getLanguage(language);
           if (language && hljsLang) {
             codeHtml = highlightIns.highlight(code, {
-              language: hljsLang.name.split(/,|\s/)[0],
+              language,
               ignoreIllegals: true
             }).value;
           } else {
@@ -467,7 +471,7 @@ export const useMarked = (props: EditorContentProp) => {
         const hljsLang = window.hljs.getLanguage(language);
         if (language && hljsLang) {
           codeHtml = window.hljs.highlight(code, {
-            language: hljsLang.name.split(/,|\s/)[0],
+            language,
             ignoreIllegals: true
           }).value;
         } else {
@@ -553,9 +557,9 @@ export const useMarked = (props: EditorContentProp) => {
 };
 
 export const useMermaid = (props: EditorContentProp) => {
-  const { theme, extension } = useContext(EditorContext);
+  const { theme } = useContext(EditorContext);
 
-  const mermaidConf = extension.editorExtensions?.mermaid;
+  const mermaidConf = configOption.editorExtensions?.mermaid;
 
   // 修改它触发重新编译
   const [reRender, setReRender] = useState<boolean>(false);
@@ -600,9 +604,8 @@ export const useMermaid = (props: EditorContentProp) => {
 };
 
 export const useKatex = (props: EditorContentProp, marked: any) => {
-  const { extension } = useContext(EditorContext);
   // 获取相应的扩展配置链接
-  const katexConf = extension.editorExtensions?.katex;
+  const katexConf = configOption.editorExtensions?.katex;
   const katexIns = katexConf?.instance;
 
   const [katexInited, setKatexInited] = useState(false);
