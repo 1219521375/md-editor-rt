@@ -1,476 +1,10 @@
-> 在线尝试示例：[传送门](https://codesandbox.io/s/elated-khorana-65jmr)。
-
-## 🤯 Props 说明
-
-这是组件最重要的一部分内容，`md-editor-rt`的属性参数如下：
-
-### 📃 modelValue
-
-- **类型**：`string`
-- **默认值**：`''`
-- **说明**：编辑的内容。
-
-  ```jsx
-  <MdEditor modelValue="xxx" />
-  ```
-
-### 🛍 theme
-
-- **类型**：`'light' | 'dark'`
-- **默认值**：`'light'`
-- **说明**：编辑器主题。
-
-  ```jsx
-  <MdEditor theme="dark" />
-  ```
-
-### 🎀 className
-
-- **类型**：`string`
-- **默认值**：`''`
-- **说明**：编辑器`className`。
-
-### 🤏🏼 historyLength
-
-- **类型**：`number`
-- **默认值**：`10`
-- **说明**：最大记录操作数（太大会占用内存）。
-
-### 💻 pageFullScreen
-
-- **类型**：`boolean`
-- **默认值**：`false`
-- **说明**：页面内全屏。
-
-### 📱 preview
-
-- **类型**：`boolean`
-- **默认值**：`true`
-- **说明**：是否显示预览。
-
-### 📀 htmlPreview
-
-- **类型**：`boolean`
-- **默认值**：`false`
-- **说明**：是否显示 html 预览，为`true`时需设置`preview=false`。
-
-  ```jsx
-  <MdEditor htmlPreview preview={false} />
-  ```
-
-### 📺 previewOnly
-
-- **类型**：`boolean`
-- **默认值**：`false`
-- **说明**：仅预览模式，不显示 bar 和编辑框，只支持初始化设置。
-
-  ```jsx
-  <MdEditor previewOnly />
-  ```
-
-### 🔤 language
-
-- **类型**：`string`
-- **默认值**：`'zh-CN'`
-- **说明**：内置中英文(`'zh-CN'`, `'en-US'`)，可自行扩展其他语言，同时可覆盖内置的中英文。
-
-### 🧱 toolbars
-
-- **类型**：`Array`
-- **默认值**：`[all]`
-- **说明**：选择性展示工具栏，可选内容见下方。
-
-  你可以随意排序工具栏，通过`'-'`分割两个工具，通过`'='`实现左右放置！
-
-  _[all]_
-
-  ```js
-  [
-    'bold',
-    'underline',
-    'italic',
-    '-',
-    'strikeThrough',
-    'sub',
-    'sup',
-    'quote',
-    'unorderedList',
-    'orderedList',
-    '-',
-    'codeRow',
-    'code',
-    'link',
-    'image',
-    'table',
-    'mermaid',
-    'katex',
-    '-',
-    'revoke',
-    'next',
-    'save',
-    '=',
-    'pageFullscreen',
-    'fullscreen',
-    'preview',
-    'htmlPreview',
-    'catalog',
-    'github'
-  ];
-
-  // 对应功能名称
-  [
-    '加粗',
-    '下划线',
-    '斜体',
-    '删除线',
-    '下标',
-    '上标',
-    '引用',
-    '无序列表',
-    '有序列表',
-    '行内代码',
-    '块级代码',
-    '链接',
-    '图片',
-    '表格',
-    '图表',
-    '公式',
-    '后退一步',
-    '前进一步',
-    '保存',
-    '页面内全屏',
-    '屏幕全屏',
-    '内容预览',
-    'html代码预览',
-    '目录',
-    '源码地址'
-  ];
-  ```
-
-### 🧱 toolbarsExclude
-
-- **类型**：`Array`
-- **默认值**：`[]`
-- **说明**：选择性不展示工具栏，内容同上。
-
-### 🪒 noPrettier
-
-- **类型**：`boolean`
-- **默认值**：`false`
-- **说明**：是否启用 prettier 优化 md 内容。
-
-### 🎲 editorId
-
-- **类型**：`string`
-- **默认值**：`'md-editor-rt'`
-- **说明**：编辑器唯一标识，非必须项，服务端渲染时，防止产生服务端与客户端渲染内容不一致错误提示，以及单页面多编辑器时做区别。
-
-### 🤏 tabWidth
-
-- **类型**：`number`
-- **默认值**：`2`
-- **说明**：编辑器一个 TAB 键等于空格数。
-
-### 🔢 showCodeRowNumber
-
-- **类型**：`boolean`
-- **默认值**：`false`
-- **说明**：代码块是否显示行号。
-
-### 🔦 previewTheme
-
-- **类型**：`'default' | 'github' | 'vuepress' | 'mk-cute' | 'smart-blue' | 'cyanosis'`
-- **默认值**：`'default'`
-- **说明**：预览内容主题，支持自定义。
-
-  主题自定义方式：
-
-  1. 编辑 css
-
-  ```css
-  .xxx-theme {
-    color: red;
-  }
-  ```
-
-  2. 设置`previewTheme`
-
-  ```jsx
-  <MdEditor preview-theme="xxx" />
-  ```
-
-  参考[markdown-theme](https://github.com/imzbf/markdown-theme)项目。
-
-### 🎅🏻 style
-
-- **类型**：`CSSProperties`
-- **默认值**：`{}`
-- **说明**：编辑器内联样式。
-
-### 📅 tableShape
-
-- **类型**：`[number, number]`
-- **默认值**：`[6, 4]`
-- **说明**：标题栏添加表格时，预设待选表格大小，第一个代表最大列数，第二个代表最大行数。
-
-```jsx
-<MdEditor tableShape={[8, 4]}>
-```
-
-![表格预设大小预览](https://imzbf.github.io/md-editor-rt/imgs/20211216165424.png)
-
-### ☝️ noMermaid
-
-- **类型**：`boolean`
-- **默认值**：`false`
-- **说明**：如果你不希望使用图表展示内容，可以设置关闭。
-
-```jsx
-<MdEditor noMermaid />
-```
-
-### 🪧 placeholder
-
-- **类型**：`string`
-- **默认值**：`''`
-- **说明**：啊这-\_-！
-
-### ☝️ noKatex
-
-- **类型**：`boolean`
-- **默认值**：`false`
-- **说明**：如果你不希望使用数学公式展示内容，可以设置关闭。
-
-```jsx
-<MdEditor noKatex />
-```
-
-### 💪 defToolbars
-
-- **类型**：`Array<ReactElement>`
-- **默认值**：`[]`
-- **说明**：自定义工具栏插槽，通过使用内置的`NormalToolbar`普通点击触发事件组件，`DropdownToolbar`下拉点击触发事件组件，和`ModalToolbar`弹窗组件进行扩展。将`defToolbars`插槽中的组件下标穿插在`toolbars`实现展示（这并不规范）
-
-  ```jsx
-  import MdEditor from 'md-editor-rt';
-
-  const NormalToolbar = MdEditor.NormalToolbar;
-
-  const handler = () => {
-    console.log('NormalToolbar clicked!');
-  };
-
-  export default () => {
-    return (
-      <MdEditor
-        modelValue=""
-        toolbars=['github', '=', 0]
-        defToolbars={[
-          <NormalToolbar
-            title="mark"
-            onClick={handler}
-            trigger={
-              <svg className="md-icon" aria-hidden="true">
-                <use xlinkHref="#icon-mark"></use>
-              </svg>
-            }
-          />
-        ]}
-      />
-    );
-  };
-  ```
-
-  ![普通扩展工具栏](https://imzbf.github.io/md-editor-rt/imgs/normal-toolbar.gif)
-
-  ![下拉扩展工具栏](https://imzbf.github.io/md-editor-rt/imgs/dropdown-toolbar.gif)
-
-  扩展组件属性参考**内置组件**，使用示例参见[文档分支](https://github.com/imzbf/md-editor-rt/tree/docs/src/components)，提供**标记**、**表情**和**弹窗预览**扩展组件。
-
-### 🦉 codeTheme
-
-- **类型**：`'atom'|'a11y'|'github'|'gradient'|'kimbie'|'paraiso'|'qtcreator'|'stackoverflow'`
-- **默认值**：`'atom'`
-- **说明**：代码块高亮样式名称。
-
-  你可以添加自己的样式，把该属性设置为你想要的即可，方式如下：
-
-  1. 配置样式链接
-
-  ```js
-  import MdEditor from 'md-editor-rt';
-
-  MdEditor.config({
-    editorExtensions: {
-      highlight: {
-        css: {
-          atom: {
-            light:
-              'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-light.min.css',
-            dark: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css'
-          },
-          xxx: {
-            light:
-              'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/xxx-light.css',
-            dark: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/xxx-dark.css'
-          }
-        }
-      }
-    }
-  });
-  ```
-
-  2. 设置`codeTheme`
-
-  ```jsx
-  <MdEditor codeTheme="xxx" />
-  ```
-
-### 🎱 markedHeadingId
-
-- **类型**：`(text: string, level: number, index: number) => string`
-- **默认值**：`(text) => text`
-- **说明**：构造标题`ID`的生成方式，在使用`MdEditor.config`定义了`renderer.heading`后，避免目录导航等失效。
-
-  例：
-
-  1. 配置 renderer
-
-  ```js
-  import MdEditor from 'md-editor-rt';
-
-  const generateId = (_text, _level, index) => `heading-${index}`;
-
-  MdEditor.config({
-    markedRenderer(renderer) {
-      renderer.heading = (text, level) => {
-        const id = generateId(text, level);
-        return `<h${level} id="${id}">${text}</h${level}>`;
-      };
-      return renderer;
-    }
-  });
-  ```
-
-  2. 配置`markedHeadingId`
-
-  ```jsx
-  <MdEditor markedHeadingId={generateId} />
-  ```
-
-### 🐣 sanitize
-
-- **类型**：`(html: string) => string`
-- **默认值**：`(html) => html`
-- **说明**：在每次生成 html 后，通过该方法移除危险内容，比如 xss 相关，当你很确定你的内容不会出现类似情况时，不必设置它。
-
-  使用`sanitize-html`演示
-
-  ```js
-  import sanitizeHtml from 'sanitize-html';
-
-  const sanitize = (html) => sanitizeHtml(html);
-  ```
-
-  ```jsx
-  <MdEditor sanitize={sanitize} />
-  ```
-
-  > 为什么不内置到编辑器：由于类似编辑器大多属于自行处理文本，自身即可确认内容是否安全，并不需要该功能。
-
-### 🦶 footers
-
-- **类型**：`Array<'markdownTotal' \| '=' \| 'scrollSwitch' \| number>`
-- **默认值**：`['markdownTotal', '=', 'scrollSwitch']`
-- **说明**：页脚显示内容，`'='`左右分割，设置为`[]`不显示页脚。
-
-### 👨‍👦 scrollAuto
-
-- **类型**：`boolean`
-- **默认值**：`true`
-- **说明**：默认左右同步滚动状态。
-
-### 🦿 defFooters
-
-- **类型**：`Array<string \| ReactElement>`
-- **默认值**：`[]`
-- **说明**：自定义扩展页脚。
-
-  示例代码见[文档页源码](https://github.com/imzbf/md-editor-rt/blob/docs/src/pages/Preview/index.tsx)。
-
-## 🪢 绑定事件
-
-目前支持的内容如下：
-
-### 📞 onChange
-
-- **类型**：`(v: string) => void`
-- **说明**：内容变化事件（当前与`textare`的`oninput`事件绑定，每输入一个单字即会触发）。
-
-### 💾 onSave
-
-- **类型**：`(v: string) => void`
-- **说明**：保存事件，快捷键与保存按钮均会触发。
-
-### 📸 onUploadImg
-
-- **类型**：`(files: Array<File>, callback: (urls: Array<string>) => void) => void`
-- **说明**：上传图片事件，弹窗会等待上传结果，务必将上传后的 urls 作为 callback 入参回传。
-
-```js
-async onUploadImg(files, callback) {
-  const res = await Promise.all(
-    files.map((file) => {
-      return new Promise((rev, rej) => {
-        const form = new FormData();
-        form.append('file', file);
-
-        axios
-          .post('/api/img/upload', form, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          })
-          .then((res) => rev(res))
-          .catch((error) => rej(error));
-      });
-    })
-  );
-
-  callback(res.map((item) => item.data.url));
-}
-```
-
-### ☎️ onHtmlChanged
-
-- **类型**：`(h: string) => void`
-- **说明**：html 变化回调事件，用于获取预览 html 代码。
-
-### 🗒 onGetCatalog
-
-- **类型**：`(list: HeadList[]) => void`
-- **说明**：动态获取`markdown`目录。
-
-### 💀 onError
-
-- **类型**：`(err: { name: string; message: string;}) => void`
-- **说明**：捕获执行错误事件，目前支持`Cropper`、`fullScreen`、`prettier`实例未加载完成操作错误。
-
-  ```js
-  const onError = (err) => {
-    alert(err.message);
-  };
-  ```
-
-  ```jsx
-  <MdEditor onError={onError} />
-  ```
-
 ## 💴 配置编辑器
 
 使用`MdEditor.config(option: ConfigOption)`方法，可以对内部的`renderer`定制。
 
-- markedRenderer: `(renderer: Renderer) => Renderer`，设置链接在新窗口打开 🌰：
+- markedRenderer: `(renderer: RewriteRenderer) => RewriteRenderer`
+
+  设置链接在新窗口打开 🌰
 
   ```js
   import MdEditor from 'md-editor-rt';
@@ -478,7 +12,7 @@ async onUploadImg(files, callback) {
   MdEditor.config({
     markedRenderer(renderer) {
       renderer.link = (href, title, text) => {
-        return `<a href="${href}" title="${title}" target="_blank">${text}</a>`;
+        return `<a href="${href}" title="${title || ''}" target="_blank">${text}</a>`;
       };
 
       return renderer;
@@ -486,7 +20,23 @@ async onUploadImg(files, callback) {
   });
   ```
 
-  > 参考：https://marked.js.org/using_pro#renderer
+  设置`heading-${index}`标题 ID 🌰
+
+  ```js
+  import MdEditor from 'md-editor-rt';
+
+  MdEditor.config({
+    markedRenderer(renderer) {
+      renderer.heading = (text, level, raw, s, index) => {
+        return `<h${level} id="heading-${index}">${text}</h${level}>`;
+      };
+
+      return renderer;
+    }
+  });
+  ```
+
+  > 参考：https://marked.js.org/using_pro#renderer，RewriteRenderer 继承了 Renderer 并重写了 heading 方法，提供了第 5 入参 index。
 
 - markedExtensions: `Array<marked.TokenizerExtension & marked.RendererExtension>`
 
@@ -656,6 +206,10 @@ async onUploadImg(files, callback) {
       };
     };
     prettier?: {
+      // >= 2.2.0
+      prettierInstance?: any;
+      parserMarkdownInstance?: any;
+
       standaloneJs?: string;
       parserMarkdownJs?: string;
     };
@@ -890,7 +444,7 @@ async onUploadImg(files, callback) {
 
 [获取使用源码](https://github.com/imzbf/md-editor-rt/blob/docs/src/components/ReadExtension/index.tsx)
 
-### 🐻 Catalog
+### 🐻 MdCatalog
 
 `Editor.MdCatalog`
 
@@ -901,6 +455,10 @@ async onUploadImg(files, callback) {
   - `markedHeadingId`: `MarkedHeadingId`，非必须，特殊化编辑器标题的算法，与编辑器相同。
   - `scrollElement`: `string | HTMLElement`，非必须，为字符时应是一个元素选择器。仅预览模式中，整页滚动时，设置为`document.documentElement`。
   - `theme`: `'light' | 'dark'`，非必须，当需要切换主题时提供，同编辑器的`theme`。
+
+- **events**
+
+  - `onClick`: `(e: MouseEvent, t: TocItem) => void`，非必须，导航点击事件。
 
 > `scrollElement`说明：仅预览下，该元素必须已定位的并且支持滚动。
 

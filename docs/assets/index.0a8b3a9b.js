@@ -1,4 +1,4 @@
-import{u as m,r as n,R as t,E as r}from"./index.53feb54a.js";var o=`## \u{1F601} Basic Usage
+import{u as m,r as t,R as e}from"./index.5b1a07bf.js";import{I as c}from"./index.7ea4caba.js";import{I as p}from"./index.a1e7e118.js";var r=`## \u{1F601} Basic Usage
 
 It has been developing iteratively, so update the latest version please. Publish logs: [releases](https://github.com/imzbf/md-editor-rt/releases)
 
@@ -336,24 +336,19 @@ import React, { useState } from 'react';
 import MdEditor from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css';
 
-const getId = (_text, level, _raw) => {
-  return \`\${level}-text\`;
+const getId = (_text, _level, index) => {
+  return \`heading-\${index}\`;
 };
 
 MdEditor.config({
   markedRenderer(renderer) {
-    renderer.heading = (text, level, raw) => {
+    renderer.heading = (text, level, raw, _s, index) => {
       // You can not use markedHeadingId method directly, but It's really simple.
       // If the ID you defined is not equal to \`raw\`(your title), be sure to tell the editor the algorithm for generating the ID by \`marketheadingid\`.
       // If not, the Catalog will not go right.
-      const id = getId(text, level, raw);
+      const id = getId(text, level, index);
 
-      if (/<a.*>.*<\\/a>/.test(text)) {
-        return \`<h\${level} id="\${id}">\${text.replace(
-          /(?<=\\<a.*)>(?=.*<\\/a>)/,
-          ' target="_blank">'
-        )}</h\${level}>\`;
-      } else if (text !== raw) {
+      if (text !== raw) {
         return \`<h\${level} id="\${id}">\${text}</h\${level}>\`;
       } else {
         return \`<h\${level} id="\${id}"><a href="#\${id}">\${raw}</a></h\${level}>\`;
@@ -476,6 +471,59 @@ Change background color in dark mode:
 }
 \`\`\`
 
+### \u{1F64D}\u{1F3FB}\u200D\u2642\uFE0F Import All Library
+
+\`\`\`jsx
+import MdEditor from 'md-editor-rt';
+import 'md-editor-rt/lib/style.css';
+
+import screenfull from 'screenfull';
+
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.css';
+
+import mermaid from 'mermaid';
+
+import highlight from 'highlight.js';
+import 'highlight.js/styles/tokyo-night-dark.css';
+
+import prettier from 'prettier';
+import parserMarkdown from 'prettier/parser-markdown';
+
+MdEditor.config({
+  editorExtensions: {
+    prettier: {
+      prettierInstance: prettier,
+      parserMarkdownInstance: parserMarkdown
+    },
+    highlight: {
+      instance: highlight
+    },
+    screenfull: {
+      instance: screenfull
+    },
+    katex: {
+      instance: katex
+    },
+    cropper: {
+      instance: Cropper
+    },
+    mermaid: {
+      instance: mermaid
+    }
+  }
+});
+
+export default () => {
+  return <MdEditor modelValue="" />;
+};
+\`\`\`
+
+> Tips: While import highlight styles by yourself, editor will not be able to change code styles.
+
 ## \u{1F512} xss
 
 after\`1.3.0\`, please use \`sanitize\` to sanitize \`html\`. eg: \`sanitize-html\`
@@ -498,7 +546,7 @@ export default () => {
 ## \u{1F9FB} Edit this page
 
 [demo-en-US](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/demo-en-US.md)
-`,i=`## \u{1F601} \u57FA\u672C\u4F7F\u7528\u793A\u4F8B
+`,o=`## \u{1F601} \u57FA\u672C\u4F7F\u7528\u793A\u4F8B
 
 \u76EE\u524D\u4E00\u76F4\u5728\u8FED\u4EE3\u5F00\u53D1\uFF0C\u6240\u4EE5\u5C3D\u91CF\u5B89\u88C5\u6700\u65B0\u7248\u672C\u3002\u53D1\u5E03\u65E5\u5FD7\u8BF7\u524D\u5F80\uFF1A[releases](https://github.com/imzbf/md-editor-rt/releases)
 
@@ -839,24 +887,23 @@ import React, { useState } from 'react';
 import MdEditor from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css';
 
-const getId = (_text, level, _raw) => {
-  return \`\${level}-text\`;
+const getId = (_text, _level, index) => {
+  return \`heading-\${index}\`;
 };
 
 MdEditor.config({
   markedRenderer(renderer) {
-    renderer.heading = (text, level, raw) => {
+    renderer.link = (href, title, text) => {
+      return \`<a href="\${href}" title="\${title || ''}" target="_blank">\${text}</a>\`;
+    };
+
+    renderer.heading = (text, level, raw, _s, index) => {
       // \u4F60\u4E0D\u80FD\u76F4\u63A5\u8C03\u7528\u9ED8\u8BA4\u7684markedHeadingId\uFF0C\u4F46\u662F\u5B83\u5F88\u7B80\u5355
       // \u5982\u679C\u4F60\u7684id\u4E0Eraw\u4E0D\u76F8\u540C\uFF0C\u8BF7\u4E00\u5B9A\u8BB0\u5F97\u5C06\u4F60\u7684\u751F\u6210\u65B9\u6CD5\u901A\u8FC7markedHeadingId\u544A\u8BC9\u7F16\u8F91\u5668
       // \u5426\u5219\u7F16\u8F91\u5668\u9ED8\u8BA4\u7684\u76EE\u5F55\u5B9A\u4F4D\u529F\u80FD\u65E0\u6CD5\u6B63\u786E\u4F7F\u7528
-      const id = getId(text, level, raw);
+      const id = getId(text, level, index);
 
-      if (/<a.*>.*<\\/a>/.test(text)) {
-        return \`<h\${level} id="\${id}">\${text.replace(
-          /(?<=\\<a.*)>(?=.*<\\/a>)/,
-          ' target="_blank">'
-        )}</h\${level}>\`;
-      } else if (text !== raw) {
+      if (text !== raw) {
         return \`<h\${level} id="\${id}">\${text}</h\${level}>\`;
       } else {
         return \`<h\${level} id="\${id}"><a href="#\${id}">\${raw}</a></h\${level}>\`;
@@ -981,6 +1028,61 @@ export default () => {
 }
 \`\`\`
 
+### \u{1F64D}\u{1F3FB}\u200D\u2642\uFE0F \u81EA\u884C\u5F15\u5165\u6269\u5C55\u5E93
+
+\u8FD9\u91CC\u7ED9\u51FA\u4E00\u4E2A\u5B8C\u5168\u4E0D\u4F7F\u7528\u5916\u90E8\u94FE\u63A5\uFF0C\u5168\u90E8\u81EA\u884C\u5F15\u5165\u7684\u793A\u4F8B\uFF1A
+
+\`\`\`jsx
+import MdEditor from 'md-editor-rt';
+import 'md-editor-rt/lib/style.css';
+
+import screenfull from 'screenfull';
+
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.css';
+
+import mermaid from 'mermaid';
+
+import highlight from 'highlight.js';
+import 'highlight.js/styles/tokyo-night-dark.css';
+
+import prettier from 'prettier';
+import parserMarkdown from 'prettier/parser-markdown';
+
+MdEditor.config({
+  editorExtensions: {
+    prettier: {
+      prettierInstance: prettier,
+      parserMarkdownInstance: parserMarkdown
+    },
+    highlight: {
+      instance: highlight
+    },
+    screenfull: {
+      instance: screenfull
+    },
+    katex: {
+      instance: katex
+    },
+    cropper: {
+      instance: Cropper
+    },
+    mermaid: {
+      instance: mermaid
+    }
+  }
+});
+
+export default () => {
+  return <MdEditor modelValue="" />;
+};
+\`\`\`
+
+> \u6CE8\u610F\uFF1Ahighlight \u7684\u6837\u5F0F\u81EA\u884C\u5F15\u5165\u540E\uFF0C\u5C06\u4E0D\u652F\u6301\u5207\u6362\u4EE3\u7801\u6837\u5F0F\u3002
+
 ## \u{1F512} xss \u9632\u8303
 
 \u5728\`1.3.0\`\u4E4B\u540E\uFF0C\u901A\u8FC7\`sanitize\`\u4E8B\u4EF6\uFF0C\u81EA\u884C\u5904\u7406\u4E0D\u5B89\u5168\u7684 html \u5185\u5BB9\u3002\u4F8B\u5982\uFF1A\u4F7F\u7528\`sanitize-html\`\u5904\u7406
@@ -1005,4 +1107,4 @@ export default () => {
 ## \u{1F9FB} \u7F16\u8F91\u6B64\u9875\u9762
 
 [demo-zh-CN](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/demo-zh-CN.md)
-`,u=()=>{const e=m(l=>l),[s,d]=n.exports.useState(()=>e.lang==="zh-CN"?i:o),a=()=>{d(e.lang==="en-US"?o:i)};return n.exports.useEffect(a,[e.lang]),t.createElement("div",{className:"container"},t.createElement("div",{className:"doc"},t.createElement("div",{className:"content"},t.createElement(r,{editorId:"demo-preview",theme:e.theme,codeTheme:e.codeTheme,language:e.lang,modelValue:s,previewTheme:e.previewTheme,previewOnly:!0,showCodeRowNumber:!0})),t.createElement("div",{className:"catalog"},t.createElement("div",{className:"affix"},t.createElement(r.MdCatalog,{editorId:"demo-preview",theme:e.theme,scrollElement:document.documentElement})))))};export{u as default};
+`;const i="demo-preview";var f=()=>{const n=m(l=>l),[s,d]=t.exports.useState(()=>n.lang==="zh-CN"?o:r),a=()=>{d(n.lang==="en-US"?r:o)};return t.exports.useEffect(a,[n.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement(p,{editorId:i,modelValue:s}),e.createElement(c,{editorId:i})))};export{f as default};
