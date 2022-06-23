@@ -336,24 +336,19 @@ import React, { useState } from 'react';
 import MdEditor from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css';
 
-const getId = (_text, level, _raw) => {
-  return `${level}-text`;
+const getId = (_text, _level, index) => {
+  return `heading-${index}`;
 };
 
 MdEditor.config({
   markedRenderer(renderer) {
-    renderer.heading = (text, level, raw) => {
+    renderer.heading = (text, level, raw, _s, index) => {
       // You can not use markedHeadingId method directly, but It's really simple.
       // If the ID you defined is not equal to `raw`(your title), be sure to tell the editor the algorithm for generating the ID by `marketheadingid`.
       // If not, the Catalog will not go right.
-      const id = getId(text, level, raw);
+      const id = getId(text, level, index);
 
-      if (/<a.*>.*<\/a>/.test(text)) {
-        return `<h${level} id="${id}">${text.replace(
-          /(?<=\<a.*)>(?=.*<\/a>)/,
-          ' target="_blank">'
-        )}</h${level}>`;
-      } else if (text !== raw) {
+      if (text !== raw) {
         return `<h${level} id="${id}">${text}</h${level}>`;
       } else {
         return `<h${level} id="${id}"><a href="#${id}">${raw}</a></h${level}>`;
@@ -475,6 +470,59 @@ Change background color in dark mode:
   --md-bk-color: #333 !important;
 }
 ```
+
+### 🙍🏻‍♂️ Import All Library
+
+```jsx
+import MdEditor from 'md-editor-rt';
+import 'md-editor-rt/lib/style.css';
+
+import screenfull from 'screenfull';
+
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.css';
+
+import mermaid from 'mermaid';
+
+import highlight from 'highlight.js';
+import 'highlight.js/styles/tokyo-night-dark.css';
+
+import prettier from 'prettier';
+import parserMarkdown from 'prettier/parser-markdown';
+
+MdEditor.config({
+  editorExtensions: {
+    prettier: {
+      prettierInstance: prettier,
+      parserMarkdownInstance: parserMarkdown
+    },
+    highlight: {
+      instance: highlight
+    },
+    screenfull: {
+      instance: screenfull
+    },
+    katex: {
+      instance: katex
+    },
+    cropper: {
+      instance: Cropper
+    },
+    mermaid: {
+      instance: mermaid
+    }
+  }
+});
+
+export default () => {
+  return <MdEditor modelValue="" />;
+};
+```
+
+> Tips: While import highlight styles by yourself, editor will not be able to change code styles.
 
 ## 🔒 xss
 
