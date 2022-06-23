@@ -1,4 +1,4 @@
-import{u as m,r as t,R as n}from"./index.5b1a07bf.js";import{I as c}from"./index.7ea4caba.js";import{I as u}from"./index.a1e7e118.js";var o=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
+import{u as m,r as t,R as n}from"./index.5b4ad611.js";import{I as c}from"./index.39c9ed35.js";import{I as g}from"./index.5448bccc.js";var o=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
 
 ## \u{1F92F} Props
 
@@ -955,7 +955,527 @@ export default () => {
 ## \u270D\uFE0F Edit this page
 
 [doc-en-US](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/doc-en-US.md)
-`,r=`## \u{1F4B4} \u914D\u7F6E\u7F16\u8F91\u5668
+`,r=`> \u5728\u7EBF\u5C1D\u8BD5\u793A\u4F8B\uFF1A[\u4F20\u9001\u95E8](https://codesandbox.io/s/elated-khorana-65jmr)\u3002
+
+## \u{1F92F} Props \u8BF4\u660E
+
+\u8FD9\u662F\u7EC4\u4EF6\u6700\u91CD\u8981\u7684\u4E00\u90E8\u5206\u5185\u5BB9\uFF0C\`md-editor-rt\`\u7684\u5C5E\u6027\u53C2\u6570\u5982\u4E0B\uFF1A
+
+### \u{1F4C3} modelValue
+
+- **\u7C7B\u578B**\uFF1A\`string\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`''\`
+
+  \u7F16\u8F91\u7684\u5185\u5BB9\u3002
+
+  \`\`\`jsx
+  <MdEditor modelValue="xxx" />
+  \`\`\`
+
+### \u{1F6CD} theme
+
+- **\u7C7B\u578B**\uFF1A\`'light' | 'dark'\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`'light'\`
+
+  \u7F16\u8F91\u5668\u4E3B\u9898\u3002
+
+  \`\`\`jsx
+  <MdEditor theme="dark" />
+  \`\`\`
+
+### \u{1F380} className
+
+- **\u7C7B\u578B**\uFF1A\`string\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`''\`
+
+  \u7F16\u8F91\u5668\`className\`\u3002
+
+### \u{1F90F}\u{1F3FC} historyLength
+
+- **\u7C7B\u578B**\uFF1A\`number\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`10\`
+
+  \u6700\u5927\u8BB0\u5F55\u64CD\u4F5C\u6570\uFF08\u592A\u5927\u4F1A\u5360\u7528\u5185\u5B58\uFF09\u3002
+
+### \u{1F4BB} pageFullScreen
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`false\`
+
+  \u9875\u9762\u5185\u5168\u5C4F\u3002
+
+### \u{1F4F1} preview
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`true\`
+
+  \u662F\u5426\u663E\u793A\u9884\u89C8\u3002
+
+### \u{1F4C0} htmlPreview
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`false\`
+
+  \u662F\u5426\u663E\u793A html \u9884\u89C8\uFF0C\u4E3A\`true\`\u65F6\u9700\u8BBE\u7F6E\`preview=false\`\u3002
+
+  \`\`\`jsx
+  <MdEditor htmlPreview preview={false} />
+  \`\`\`
+
+### \u{1F4FA} previewOnly
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`false\`
+
+  \u4EC5\u9884\u89C8\u6A21\u5F0F\uFF0C\u4E0D\u663E\u793A bar \u548C\u7F16\u8F91\u6846\uFF0C\u53EA\u652F\u6301\u521D\u59CB\u5316\u8BBE\u7F6E\u3002
+
+  \`\`\`jsx
+  <MdEditor previewOnly />
+  \`\`\`
+
+### \u{1F524} language
+
+- **\u7C7B\u578B**\uFF1A\`string\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`'zh-CN'\`
+
+  \u5185\u7F6E\u4E2D\u82F1\u6587(\`'zh-CN'\`, \`'en-US'\`)\uFF0C\u53EF\u81EA\u884C\u6269\u5C55\u5176\u4ED6\u8BED\u8A00\uFF0C\u540C\u65F6\u53EF\u8986\u76D6\u5185\u7F6E\u7684\u4E2D\u82F1\u6587\u3002
+
+### \u{1F9F1} toolbars
+
+- **\u7C7B\u578B**\uFF1A\`Array\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`[all]\`
+
+  \u9009\u62E9\u6027\u5C55\u793A\u5DE5\u5177\u680F\uFF0C\u53EF\u9009\u5185\u5BB9\u89C1\u4E0B\u65B9\u3002
+
+  \u4F60\u53EF\u4EE5\u968F\u610F\u6392\u5E8F\u5DE5\u5177\u680F\uFF0C\u901A\u8FC7\`'-'\`\u5206\u5272\u4E24\u4E2A\u5DE5\u5177\uFF0C\u901A\u8FC7\`'='\`\u5B9E\u73B0\u5DE6\u53F3\u653E\u7F6E\uFF01
+
+  _[all]_
+
+  \`\`\`js
+  [
+    'bold',
+    'underline',
+    'italic',
+    '-',
+    'strikeThrough',
+    'sub',
+    'sup',
+    'quote',
+    'unorderedList',
+    'orderedList',
+    '-',
+    'codeRow',
+    'code',
+    'link',
+    'image',
+    'table',
+    'mermaid',
+    'katex',
+    '-',
+    'revoke',
+    'next',
+    'save',
+    '=',
+    'pageFullscreen',
+    'fullscreen',
+    'preview',
+    'htmlPreview',
+    'catalog',
+    'github'
+  ];
+
+  // \u5BF9\u5E94\u529F\u80FD\u540D\u79F0
+  [
+    '\u52A0\u7C97',
+    '\u4E0B\u5212\u7EBF',
+    '\u659C\u4F53',
+    '\u5220\u9664\u7EBF',
+    '\u4E0B\u6807',
+    '\u4E0A\u6807',
+    '\u5F15\u7528',
+    '\u65E0\u5E8F\u5217\u8868',
+    '\u6709\u5E8F\u5217\u8868',
+    '\u884C\u5185\u4EE3\u7801',
+    '\u5757\u7EA7\u4EE3\u7801',
+    '\u94FE\u63A5',
+    '\u56FE\u7247',
+    '\u8868\u683C',
+    '\u56FE\u8868',
+    '\u516C\u5F0F',
+    '\u540E\u9000\u4E00\u6B65',
+    '\u524D\u8FDB\u4E00\u6B65',
+    '\u4FDD\u5B58',
+    '\u9875\u9762\u5185\u5168\u5C4F',
+    '\u5C4F\u5E55\u5168\u5C4F',
+    '\u5185\u5BB9\u9884\u89C8',
+    'html\u4EE3\u7801\u9884\u89C8',
+    '\u76EE\u5F55',
+    '\u6E90\u7801\u5730\u5740'
+  ];
+  \`\`\`
+
+### \u{1F9F1} toolbarsExclude
+
+- **\u7C7B\u578B**\uFF1A\`Array\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`[]\`
+
+  \u9009\u62E9\u6027\u4E0D\u5C55\u793A\u5DE5\u5177\u680F\uFF0C\u5185\u5BB9\u540C\u4E0A\u3002
+
+### \u{1FA92} noPrettier
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`false\`
+
+  \u662F\u5426\u542F\u7528 prettier \u4F18\u5316 md \u5185\u5BB9\u3002
+
+### \u{1F3B2} editorId
+
+- **\u7C7B\u578B**\uFF1A\`string\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`'md-editor-rt'\`
+
+  \u7F16\u8F91\u5668\u552F\u4E00\u6807\u8BC6\uFF0C\u975E\u5FC5\u987B\u9879\uFF0C\u670D\u52A1\u7AEF\u6E32\u67D3\u65F6\uFF0C\u9632\u6B62\u4EA7\u751F\u670D\u52A1\u7AEF\u4E0E\u5BA2\u6237\u7AEF\u6E32\u67D3\u5185\u5BB9\u4E0D\u4E00\u81F4\u9519\u8BEF\u63D0\u793A\uFF0C\u4EE5\u53CA\u5355\u9875\u9762\u591A\u7F16\u8F91\u5668\u65F6\u505A\u533A\u522B\u3002
+
+### \u{1F90F} tabWidth
+
+- **\u7C7B\u578B**\uFF1A\`number\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`2\`
+
+  \u7F16\u8F91\u5668\u4E00\u4E2A TAB \u952E\u7B49\u4E8E\u7A7A\u683C\u6570\u3002
+
+### \u{1F522} showCodeRowNumber
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`false\`
+
+  \u4EE3\u7801\u5757\u662F\u5426\u663E\u793A\u884C\u53F7\u3002
+
+### \u{1F526} previewTheme
+
+- **\u7C7B\u578B**\uFF1A\`'default' | 'github' | 'vuepress' | 'mk-cute' | 'smart-blue' | 'cyanosis'\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`'default'\`
+
+  \u9884\u89C8\u5185\u5BB9\u4E3B\u9898\uFF0C\u652F\u6301\u81EA\u5B9A\u4E49\u3002
+
+  \u4E3B\u9898\u81EA\u5B9A\u4E49\u65B9\u5F0F\uFF1A
+
+  1. \u7F16\u8F91 css
+
+  \`\`\`css
+  .xxx-theme {
+    color: red;
+  }
+  \`\`\`
+
+  2. \u8BBE\u7F6E\`previewTheme\`
+
+  \`\`\`jsx
+  <MdEditor preview-theme="xxx" />
+  \`\`\`
+
+  \u53C2\u8003[markdown-theme](https://github.com/imzbf/markdown-theme)\u9879\u76EE\u3002
+
+### \u{1F385}\u{1F3FB} style
+
+- **\u7C7B\u578B**\uFF1A\`CSSProperties\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`{}\`
+
+  \u7F16\u8F91\u5668\u5185\u8054\u6837\u5F0F\u3002
+
+### \u{1F4C5} tableShape
+
+- **\u7C7B\u578B**\uFF1A\`[number, number]\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`[6, 4]\`
+
+  \u6807\u9898\u680F\u6DFB\u52A0\u8868\u683C\u65F6\uFF0C\u9884\u8BBE\u5F85\u9009\u8868\u683C\u5927\u5C0F\uFF0C\u7B2C\u4E00\u4E2A\u4EE3\u8868\u6700\u5927\u5217\u6570\uFF0C\u7B2C\u4E8C\u4E2A\u4EE3\u8868\u6700\u5927\u884C\u6570\u3002
+
+\`\`\`jsx
+<MdEditor tableShape={[8, 4]}>
+\`\`\`
+
+![\u8868\u683C\u9884\u8BBE\u5927\u5C0F\u9884\u89C8](https://imzbf.github.io/md-editor-rt/imgs/20211216165424.png)
+
+### \u261D\uFE0F noMermaid
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`false\`
+
+  \u5982\u679C\u4F60\u4E0D\u5E0C\u671B\u4F7F\u7528\u56FE\u8868\u5C55\u793A\u5185\u5BB9\uFF0C\u53EF\u4EE5\u8BBE\u7F6E\u5173\u95ED\u3002
+
+\`\`\`jsx
+<MdEditor noMermaid />
+\`\`\`
+
+### \u{1FAA7} placeholder
+
+- **\u7C7B\u578B**\uFF1A\`string\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`''\`
+
+  \u554A\u8FD9-\\_-\uFF01
+
+### \u274C noKatex
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`false\`
+
+  \u5982\u679C\u4F60\u4E0D\u5E0C\u671B\u4F7F\u7528\u6570\u5B66\u516C\u5F0F\u5C55\u793A\u5185\u5BB9\uFF0C\u53EF\u4EE5\u8BBE\u7F6E\u5173\u95ED\u3002
+
+\`\`\`jsx
+<MdEditor noKatex />
+\`\`\`
+
+### \u{1F4AA} defToolbars
+
+- **\u7C7B\u578B**\uFF1A\`Array<ReactElement>\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`[]\`
+
+  \u81EA\u5B9A\u4E49\u5DE5\u5177\u680F\u63D2\u69FD\uFF0C\u901A\u8FC7\u4F7F\u7528\u5185\u7F6E\u7684\`NormalToolbar\`\u666E\u901A\u70B9\u51FB\u89E6\u53D1\u4E8B\u4EF6\u7EC4\u4EF6\uFF0C\`DropdownToolbar\`\u4E0B\u62C9\u70B9\u51FB\u89E6\u53D1\u4E8B\u4EF6\u7EC4\u4EF6\uFF0C\u548C\`ModalToolbar\`\u5F39\u7A97\u7EC4\u4EF6\u8FDB\u884C\u6269\u5C55\u3002\u5C06\`defToolbars\`\u63D2\u69FD\u4E2D\u7684\u7EC4\u4EF6\u4E0B\u6807\u7A7F\u63D2\u5728\`toolbars\`\u5B9E\u73B0\u5C55\u793A\uFF08\u8FD9\u5E76\u4E0D\u89C4\u8303\uFF09
+
+  \`\`\`jsx
+  import MdEditor from 'md-editor-rt';
+
+  const NormalToolbar = MdEditor.NormalToolbar;
+
+  const handler = () => {
+    console.log('NormalToolbar clicked!');
+  };
+
+  export default () => {
+    return (
+      <MdEditor
+        modelValue=""
+        toolbars=['github', '=', 0]
+        defToolbars={[
+          <NormalToolbar
+            title="mark"
+            onClick={handler}
+            trigger={
+              <svg className="md-icon" aria-hidden="true">
+                <use xlinkHref="#icon-mark"></use>
+              </svg>
+            }
+          />
+        ]}
+      />
+    );
+  };
+  \`\`\`
+
+  ![\u666E\u901A\u6269\u5C55\u5DE5\u5177\u680F](https://imzbf.github.io/md-editor-rt/imgs/normal-toolbar.gif)
+
+  ![\u4E0B\u62C9\u6269\u5C55\u5DE5\u5177\u680F](https://imzbf.github.io/md-editor-rt/imgs/dropdown-toolbar.gif)
+
+  \u6269\u5C55\u7EC4\u4EF6\u5C5E\u6027\u53C2\u8003**\u5185\u7F6E\u7EC4\u4EF6**\uFF0C\u4F7F\u7528\u793A\u4F8B\u53C2\u89C1[\u6587\u6863\u5206\u652F](https://github.com/imzbf/md-editor-rt/tree/docs/src/components)\uFF0C\u63D0\u4F9B**\u6807\u8BB0**\u3001**\u8868\u60C5**\u548C**\u5F39\u7A97\u9884\u89C8**\u6269\u5C55\u7EC4\u4EF6\u3002
+
+### \u{1F989} codeTheme
+
+- **\u7C7B\u578B**\uFF1A\`'atom'|'a11y'|'github'|'gradient'|'kimbie'|'paraiso'|'qtcreator'|'stackoverflow'\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`'atom'\`
+
+  \u4EE3\u7801\u5757\u9AD8\u4EAE\u6837\u5F0F\u540D\u79F0\u3002
+
+  \u4F60\u53EF\u4EE5\u6DFB\u52A0\u81EA\u5DF1\u7684\u6837\u5F0F\uFF0C\u628A\u8BE5\u5C5E\u6027\u8BBE\u7F6E\u4E3A\u4F60\u60F3\u8981\u7684\u5373\u53EF\uFF0C\u65B9\u5F0F\u5982\u4E0B\uFF1A
+
+  1. \u914D\u7F6E\u6837\u5F0F\u94FE\u63A5
+
+  \`\`\`js
+  import MdEditor from 'md-editor-rt';
+
+  MdEditor.config({
+    editorExtensions: {
+      highlight: {
+        css: {
+          atom: {
+            light:
+              'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-light.min.css',
+            dark: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css'
+          },
+          xxx: {
+            light:
+              'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/xxx-light.css',
+            dark: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/xxx-dark.css'
+          }
+        }
+      }
+    }
+  });
+  \`\`\`
+
+  2. \u8BBE\u7F6E\`codeTheme\`
+
+  \`\`\`jsx
+  <MdEditor codeTheme="xxx" />
+  \`\`\`
+
+### \u{1F3B1} markedHeadingId
+
+- **\u7C7B\u578B**\uFF1A\`(text: string, level: number, index: number) => string\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`(text) => text\`
+
+  \u6784\u9020\u6807\u9898\`ID\`\u7684\u751F\u6210\u65B9\u5F0F\uFF0C\u5728\u4F7F\u7528\`MdEditor.config\`\u5B9A\u4E49\u4E86\`renderer.heading\`\u540E\uFF0C\u907F\u514D\u76EE\u5F55\u5BFC\u822A\u7B49\u5931\u6548\u3002
+
+  \u4F8B\uFF1A
+
+  1. \u914D\u7F6E renderer
+
+  \`\`\`js
+  import MdEditor from 'md-editor-rt';
+
+  const generateId = (_text, _level, index) => \`heading-\${index}\`;
+
+  MdEditor.config({
+    markedRenderer(renderer) {
+      renderer.heading = (text, level) => {
+        const id = generateId(text, level);
+        return \`<h\${level} id="\${id}">\${text}</h\${level}>\`;
+      };
+      return renderer;
+    }
+  });
+  \`\`\`
+
+  2. \u914D\u7F6E\`markedHeadingId\`
+
+  \`\`\`jsx
+  <MdEditor markedHeadingId={generateId} />
+  \`\`\`
+
+### \u{1F423} sanitize
+
+- **\u7C7B\u578B**\uFF1A\`(html: string) => string\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`(html) => html\`
+
+  \u5728\u6BCF\u6B21\u751F\u6210 html \u540E\uFF0C\u901A\u8FC7\u8BE5\u65B9\u6CD5\u79FB\u9664\u5371\u9669\u5185\u5BB9\uFF0C\u6BD4\u5982 xss \u76F8\u5173\uFF0C\u5F53\u4F60\u5F88\u786E\u5B9A\u4F60\u7684\u5185\u5BB9\u4E0D\u4F1A\u51FA\u73B0\u7C7B\u4F3C\u60C5\u51B5\u65F6\uFF0C\u4E0D\u5FC5\u8BBE\u7F6E\u5B83\u3002
+
+  \u4F7F\u7528\`sanitize-html\`\u6F14\u793A
+
+  \`\`\`js
+  import sanitizeHtml from 'sanitize-html';
+
+  const sanitize = (html) => sanitizeHtml(html);
+  \`\`\`
+
+  \`\`\`jsx
+  <MdEditor sanitize={sanitize} />
+  \`\`\`
+
+  > \u4E3A\u4EC0\u4E48\u4E0D\u5185\u7F6E\u5230\u7F16\u8F91\u5668\uFF1A\u7531\u4E8E\u7C7B\u4F3C\u7F16\u8F91\u5668\u5927\u591A\u5C5E\u4E8E\u81EA\u884C\u5904\u7406\u6587\u672C\uFF0C\u81EA\u8EAB\u5373\u53EF\u786E\u8BA4\u5185\u5BB9\u662F\u5426\u5B89\u5168\uFF0C\u5E76\u4E0D\u9700\u8981\u8BE5\u529F\u80FD\u3002
+
+### \u{1F9B6} footers
+
+- **\u7C7B\u578B**\uFF1A\`Array<'markdownTotal' \\| '=' \\| 'scrollSwitch' \\| number>\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`['markdownTotal', '=', 'scrollSwitch']\`
+
+  \u9875\u811A\u663E\u793A\u5185\u5BB9\uFF0C\`'='\`\u5DE6\u53F3\u5206\u5272\uFF0C\u8BBE\u7F6E\u4E3A\`[]\`\u4E0D\u663E\u793A\u9875\u811A\u3002
+
+### \u26F5\uFE0F scrollAuto
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`true\`
+
+  \u9ED8\u8BA4\u5DE6\u53F3\u540C\u6B65\u6EDA\u52A8\u72B6\u6001\u3002
+
+### \u{1F9BF} defFooters
+
+- **\u7C7B\u578B**\uFF1A\`Array<string \\| ReactElement>\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`[]\`
+
+  \u81EA\u5B9A\u4E49\u6269\u5C55\u9875\u811A\u3002
+
+  \u793A\u4F8B\u4EE3\u7801\u89C1[\u6587\u6863\u9875\u6E90\u7801](https://github.com/imzbf/md-editor-rt/blob/docs/src/pages/Preview/index.tsx)\u3002
+
+### \u{1F91E}\u{1F3FC} noIconfont
+
+- **\u7C7B\u578B**\uFF1A\`boolean\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`true\`
+
+  \u4E0D\u63D2\u5165 iconfont \u94FE\u63A5\uFF0C\u4F60\u53EF\u4EE5[\u4E0B\u8F7D](https://at.alicdn.com/t/font_2605852_pqekijay2ij.js)\u5230\u672C\u5730\u81EA\u884C\u5F15\u5165\u3002
+
+  \`\`\`jsx
+  import MdEditor from 'md-editor-rt';
+  import 'md-editor-rt/lib/style.css';
+
+  import '/assets/iconfont.js';
+
+  export default () => {
+    return <MdEditor noIconfont />;
+  };
+  \`\`\`
+
+## \u{1FAA2} \u7ED1\u5B9A\u4E8B\u4EF6
+
+\u76EE\u524D\u652F\u6301\u7684\u5185\u5BB9\u5982\u4E0B\uFF1A
+
+### \u{1F4DE} onChange
+
+- **\u7C7B\u578B**\uFF1A\`(v: string) => void\`
+
+  \u5185\u5BB9\u53D8\u5316\u4E8B\u4EF6\uFF08\u5F53\u524D\u4E0E\`textare\`\u7684\`oninput\`\u4E8B\u4EF6\u7ED1\u5B9A\uFF0C\u6BCF\u8F93\u5165\u4E00\u4E2A\u5355\u5B57\u5373\u4F1A\u89E6\u53D1\uFF09\u3002
+
+### \u{1F4BE} onSave
+
+- **\u7C7B\u578B**\uFF1A\`(v: string) => void\`
+
+  \u4FDD\u5B58\u4E8B\u4EF6\uFF0C\u5FEB\u6377\u952E\u4E0E\u4FDD\u5B58\u6309\u94AE\u5747\u4F1A\u89E6\u53D1\u3002
+
+### \u{1F4F8} onUploadImg
+
+- **\u7C7B\u578B**\uFF1A\`(files: Array<File>, callback: (urls: Array<string>) => void) => void\`
+
+  \u4E0A\u4F20\u56FE\u7247\u4E8B\u4EF6\uFF0C\u5F39\u7A97\u4F1A\u7B49\u5F85\u4E0A\u4F20\u7ED3\u679C\uFF0C\u52A1\u5FC5\u5C06\u4E0A\u4F20\u540E\u7684 urls \u4F5C\u4E3A callback \u5165\u53C2\u56DE\u4F20\u3002
+
+\`\`\`js
+async onUploadImg(files, callback) {
+  const res = await Promise.all(
+    files.map((file) => {
+      return new Promise((rev, rej) => {
+        const form = new FormData();
+        form.append('file', file);
+
+        axios
+          .post('/api/img/upload', form, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+          .then((res) => rev(res))
+          .catch((error) => rej(error));
+      });
+    })
+  );
+
+  callback(res.map((item) => item.data.url));
+}
+\`\`\`
+
+### \u{1F681} onHtmlChanged
+
+- **\u7C7B\u578B**\uFF1A\`(h: string) => void\`
+
+  html \u53D8\u5316\u56DE\u8C03\u4E8B\u4EF6\uFF0C\u7528\u4E8E\u83B7\u53D6\u9884\u89C8 html \u4EE3\u7801\u3002
+
+### \u{1F5D2} onGetCatalog
+
+- **\u7C7B\u578B**\uFF1A\`(list: HeadList[]) => void\`
+
+  \u52A8\u6001\u83B7\u53D6\`markdown\`\u76EE\u5F55\u3002
+
+### \u{1F480} onError
+
+- **\u7C7B\u578B**\uFF1A\`(err: { name: string; message: string;}) => void\`
+
+  \u6355\u83B7\u6267\u884C\u9519\u8BEF\u4E8B\u4EF6\uFF0C\u76EE\u524D\u652F\u6301\`Cropper\`\u3001\`fullScreen\`\u3001\`prettier\`\u5B9E\u4F8B\u672A\u52A0\u8F7D\u5B8C\u6210\u64CD\u4F5C\u9519\u8BEF\u3002
+
+  \`\`\`js
+  const onError = (err) => {
+    alert(err.message);
+  };
+  \`\`\`
+
+  \`\`\`jsx
+  <MdEditor onError={onError} />
+  \`\`\`
+
+## \u{1F4B4} \u914D\u7F6E\u7F16\u8F91\u5668
 
 \u4F7F\u7528\`MdEditor.config(option: ConfigOption)\`\u65B9\u6CD5\uFF0C\u53EF\u4EE5\u5BF9\u5185\u90E8\u7684\`renderer\`\u5B9A\u5236\u3002
 
@@ -1440,4 +1960,251 @@ export default () => {
 ## \u270D\uFE0F \u7F16\u8F91\u6B64\u9875\u9762
 
 [doc-zh-CN](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/doc-zh-CN.md)
-`;const i="doc-preview";var b=()=>{const e=m(l=>l),[s,d]=t.exports.useState(()=>e.lang==="zh-CN"?r:o),a=()=>{d(e.lang==="en-US"?o:r)};return t.exports.useEffect(a,[e.lang]),n.createElement("div",{className:"container"},n.createElement("div",{className:"doc"},n.createElement(u,{editorId:i,modelValue:s}),n.createElement(c,{editorId:i})))};export{b as default};
+
+## \u{1FAA1} \u5FEB\u6377\u952E
+
+\u4E3B\u8981\u4EE5\`CTRL\`\u642D\u914D\u5BF9\u5E94\u529F\u80FD\u82F1\u6587\u5355\u8BCD\u9996\u5B57\u6BCD\uFF0C\u51B2\u7A81\u9879\u6DFB\u52A0\`SHIFT\`\uFF0C\u518D\u51B2\u7A81\u66FF\u6362\u4E3A\`ALT\`\u3002
+
+| \u952E\u4F4D | \u529F\u80FD | \u8BF4\u660E |
+| --- | --- | --- |
+| TAB | \u7A7A\u683C | \u901A\u8FC7\`tabWidth\`\u5C5E\u6027\u9884\u8BBE TAB \u952E\u4F4D\u65B0\u589E\u7A7A\u683C\u957F\u5EA6\uFF0C\u9ED8\u8BA4 2\uFF0C\u652F\u6301\u591A\u884C |
+| SHIFT + TAB | \u53D6\u6D88\u7A7A\u683C | \u540C\u4E0A\uFF0C\u4E00\u6B21\u53D6\u6D88\u4E24\u4E2A\u7A7A\u683C\uFF0C\u652F\u6301\u591A\u884C |
+| CTRL + C | \u590D\u5236 | \u9009\u4E2D\u65F6\u590D\u5236\u9009\u4E2D\u5185\u5BB9\uFF0C\u672A\u9009\u4E2D\u65F6\u590D\u5236\u5F53\u524D\u884C\u5185\u5BB9 |
+| CTRL + X | \u526A\u5207 | \u9009\u4E2D\u65F6\u526A\u5207\u9009\u4E2D\u5185\u5BB9\uFF0C\u672A\u9009\u4E2D\u65F6\u526A\u5207\u5F53\u524D\u884C |
+| CTRL + D | \u5220\u9664 | \u9009\u4E2D\u65F6\u5220\u9664\u9009\u4E2D\u5185\u5BB9\uFF0C\u672A\u9009\u4E2D\u65F6\u5220\u9664\u5F53\u524D\u884C |
+| CTRL + S | \u4FDD\u5B58 | \u89E6\u53D1\u7F16\u8F91\u5668\u7684\`onSave\`\u56DE\u8C03 |
+| CTRL + B | \u52A0\u7C97 | \`**\u52A0\u7C97**\` |
+| CTRL + U | \u4E0B\u5212\u7EBF | \`<u>\u4E0B\u5212\u7EBF</u>\` |
+| CTRL + I | \u659C\u4F53 | \`*\u659C\u4F53*\` |
+| CTRL + 1-6 | 1-6 \u7EA7\u6807\u9898 | \`# \u6807\u9898\` |
+| CTRL + \u2191 | \u4E0A\u89D2\u6807 | \`<sup>\u4E0A\u89D2\u6807</sup>\` |
+| CTRL + \u2193 | \u4E0B\u89D2\u6807 | \`<sub>\u4E0B\u89D2\u6807</sub>\` |
+| CTRL + Q | \u5F15\u7528 | \`> \u5F15\u7528\` |
+| CTRL + O | \u6709\u5E8F\u5217\u8868 | \`1. \u6709\u5E8F\u5217\u8868\` |
+| CTRL + L | \u94FE\u63A5 | \`[\u94FE\u63A5](https://imzbf.cc)\` |
+| CTRL + Z | \u64A4\u56DE | \u89E6\u53D1\u7F16\u8F91\u5668\u5185\u5185\u5BB9\u64A4\u56DE\uFF0C\u4E0E\u7CFB\u7EDF\u65E0\u5173 |
+| CTRL + SHIFT + S | \u5220\u9664\u7EBF | \`~\u5220\u9664\u7EBF~\` |
+| CTRL + SHIFT + U | \u65E0\u5E8F\u5217\u8868 | \`- \u65E0\u5E8F\u5217\u8868\` |
+| CTRL + SHIFT + C | \u5757\u7EA7\u4EE3\u7801 | \u591A\u884C\u4EE3\u7801\u5757 |
+| CTRL + SHIFT + I | \u56FE\u7247\u94FE\u63A5 | \`![\u56FE\u7247](https://imzbf.cc)\` |
+| CTRL + SHIFT + Z | \u524D\u8FDB\u4E00\u6B65 | \u89E6\u53D1\u7F16\u8F91\u5668\u5185\u5185\u5BB9\u524D\u8FDB\uFF0C\u4E0E\u7CFB\u7EDF\u65E0\u5173 |
+| CTRL + SHIFT + F | \u7F8E\u5316\u5185\u5BB9 |  |
+| CTRL + ALT + C | \u884C\u5185\u4EE3\u7801 | \u884C\u5185\u4EE3\u7801\u5757 |
+| CTRL + SHIFT + ALT + T | \u8868\u683C | \`\\|\u8868\u683C\\|\` |
+
+## \u{1FAA4} \u5185\u7F6E\u7EC4\u4EF6
+
+\u6269\u5C55\u7EC4\u4EF6\u4F5C\u4E3A\u7F16\u8F91\u5668\u7EC4\u4EF6\u7684\u5C5E\u6027\u503C\u6765\u4F7F\u7528\uFF0C\u4F8B\u5982\uFF1A\`MdEditor.DropdownToolbar\`\u3002
+
+### \u{1F423} NormalToolbar
+
+- **props**
+
+  - \`title\`: \`string\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u4F5C\u4E3A\u5DE5\u5177\u680F\u4E0A\u7684 hover \u63D0\u793A\u3002
+
+- **events**
+
+  - \`onClick\`: \`(e: MouseEvent) => void\`\uFF0C\u5FC5\u987B\uFF0C\u70B9\u51FB\u4E8B\u4EF6\u3002
+
+- **slots**
+
+  - \`trigger\`: \`string | ReactElement\`\uFF0C\u5FC5\u987B\uFF0C\u901A\u5E38\u662F\u4E2A\u56FE\u6807\uFF0C\u7528\u6765\u5C55\u793A\u5728\u5DE5\u5177\u680F\u4E0A\u3002
+
+\`\`\`jsx
+<MdEditor
+  modelValue=""
+  editorId="md-prev"
+  defToolbars={[
+    <MdEditor.NormalToolbar
+      title="\u6807\u8BB0"
+      trigger={
+        <svg className="md-icon" aria-hidden="true">
+          <use xlinkHref="#icon-mark"></use>
+        </svg>
+      }
+      onClick={console.log}
+      key="mark-toolbar"
+    />
+  ]}
+/>
+\`\`\`
+
+[\u83B7\u53D6\u4F7F\u7528\u6E90\u7801](https://github.com/imzbf/md-editor-rt/blob/docs/src/components/MarkExtension/index.tsx)
+
+### \u{1F43C} DropdownToolbar
+
+- **props**
+
+  - \`title\`: \`string\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u4F5C\u4E3A\u5DE5\u5177\u680F\u4E0A\u7684 hover \u63D0\u793A\u3002
+  - \`visible\`: \`boolean\`\uFF0C\u5FC5\u987B\uFF0C\u4E0B\u62C9\u72B6\u6001\u3002
+
+- **events**
+
+  - \`onChange\`: \`(visible: boolean) => void\`\uFF0C\u5FC5\u987B\uFF0C\u72B6\u6001\u53D8\u5316\u4E8B\u4EF6\u3002
+
+- **slots**
+
+  - \`trigger\`: \`string | ReactElement\`\uFF0C\u5FC5\u987B\uFF0C\u901A\u5E38\u662F\u4E2A\u56FE\u6807\uFF0C\u7528\u6765\u5C55\u793A\u5728\u5DE5\u5177\u680F\u4E0A\u3002
+  - \`overlay\`: \`string | ReactElement\`\uFF0C\u5FC5\u987B\uFF0C\u4E0B\u62C9\u6846\u4E2D\u7684\u5185\u5BB9\u3002
+
+\`\`\`jsx
+<MdEditor
+  modelValue=""
+  editorId="md-prev"
+  defToolbars={[
+    <MdEditor.DropdownToolbar
+      visible={emojiVisible}
+      onChange={setEmojiVisible}
+      overlay={
+        <div className="emoji-container">
+          <ol className="emojis">
+            {emojis.map((emoji, index) => (
+              <li
+                key={\`emoji-\${index}\`}
+                onClick={() => {
+                  emojiHandler(emoji);
+                }}
+              >
+                {emoji}
+              </li>
+            ))}
+          </ol>
+        </div>
+      }
+      trigger={
+        <svg className="md-icon" aria-hidden="true">
+          <use xlinkHref="#icon-emoji"></use>
+        </svg>
+      }
+      key="emoji-toolbar"
+    />
+  ]}
+/>
+\`\`\`
+
+[\u83B7\u53D6\u4F7F\u7528\u6E90\u7801](https://github.com/imzbf/md-editor-rt/blob/docs/src/components/EmojiExtension/index.tsx)
+
+### \u{1F989} ModalToolbar
+
+- **props**
+
+  - \`title\`: \`string\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u4F5C\u4E3A\u5DE5\u5177\u680F\u4E0A\u7684 hover \u63D0\u793A\u3002
+  - \`modalTitle\`: \`string\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u5F39\u7A97\u7684\u6807\u9898\u3002
+  - \`visible\`: \`boolean\`\uFF0C\u5FC5\u987B\uFF0C\u5F39\u7A97\u663E\u793A\u72B6\u6001\u3002
+  - \`width\`: \`string\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u5F39\u7A97\u5BBD\u5EA6\uFF0C\u9ED8\u8BA4\`auto\`\u3002
+  - \`height\`\uFF1A\`string\`\uFF0C\u540C\`width\`\u3002
+  - \`showAdjust\`: \`boolean\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u662F\u5426\u663E\u793A\u5F39\u7A97\u5168\u5C4F\u6309\u94AE\u3002
+  - \`isFullscreen\`: \`boolean\`\uFF0C\u663E\u793A\u5168\u5C4F\u6309\u94AE\u65F6\u5FC5\u987B\uFF0C\u5F39\u7A97\u5168\u5C4F\u72B6\u6001\u3002
+
+- **events**
+
+  - \`onClick\`: \`() => void\`\uFF0C\u5FC5\u987B\uFF0C\u5DE5\u5177\u680F\u70B9\u51FB\u4E8B\u4EF6\u3002
+  - \`onClose\`\uFF1A\`() => void\`\uFF0C\u5FC5\u987B\uFF0C\u5F39\u7A97\u70B9\u51FB\u5173\u95ED\u4E8B\u4EF6\u3002
+  - \`onAdjust\`\uFF1A\`(val: boolean) => void\`\uFF0C\u5F39\u7A97\u5168\u5C4F\u6309\u94AE\u70B9\u51FB\u4E8B\u4EF6\u3002
+
+- **slots**
+
+  - \`trigger\`: \`string | ReactElement\`\uFF0C\u5FC5\u987B\uFF0C\u901A\u5E38\u662F\u4E2A\u56FE\u6807\uFF0C\u7528\u6765\u5C55\u793A\u5728\u5DE5\u5177\u680F\u4E0A\u3002
+  - \`overlay\`: \`string | ReactElement\`\uFF0C\u5FC5\u987B\uFF0C\u4E0B\u62C9\u6846\u4E2D\u7684\u5185\u5BB9\u3002
+
+\`\`\`jsx
+<MdEditor
+  modelValue=""
+  editorId="md-prev"
+  defToolbars={[
+    <MdEditor.ModalToolbar
+      visible={state.visible}
+      isFullscreen={state.modalFullscreen}
+      showAdjust
+      title="\u5F39\u7A97\u9884\u89C8"
+      modalTitle="\u7F16\u8F91\u9884\u89C8"
+      width="870px"
+      height="600px"
+      onClick={() => {
+        setState({
+          ...state,
+          visible: true
+        });
+      }}
+      onClose={() => {
+        setState({
+          ...state,
+          visible: false
+        });
+      }}
+      onAdjust={() => {
+        setState({
+          ...state,
+          modalFullscreen: !state.modalFullscreen
+        });
+      }}
+      trigger={
+        <svg className="md-icon" aria-hidden="true">
+          <use xlinkHref="#icon-read"></use>
+        </svg>
+      }
+    >
+      <div
+        style={{
+          height: '100%',
+          padding: '20px',
+          overflow: 'auto'
+        }}
+      >
+        <MdEditor
+          theme={store.theme}
+          language={store.lang}
+          previewTheme={store.previewTheme}
+          codeTheme={store.codeTheme}
+          editorId="edit2preview"
+          previewOnly
+          modelValue={props.mdText}
+        />
+      </div>
+    </MdEditor.ModalToolbar>
+  ]}
+/>
+\`\`\`
+
+[\u83B7\u53D6\u4F7F\u7528\u6E90\u7801](https://github.com/imzbf/md-editor-rt/blob/docs/src/components/ReadExtension/index.tsx)
+
+### \u{1F43B} MdCatalog
+
+\`Editor.MdCatalog\`
+
+- **props**
+
+  - \`editorId\`: \`string\`\uFF0C\u5FC5\u987B\uFF0C\u5BF9\u5E94\u7F16\u8F91\u5668\u7684\`editorId\`\uFF0C\u5728\u5185\u90E8\u6CE8\u518C\u76EE\u5F55\u53D8\u5316\u76D1\u542C\u4E8B\u4EF6\u3002
+  - \`className\`: \`string\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u76EE\u5F55\u7EC4\u4EF6\u6700\u5916\u5C42\u7C7B\u540D\u3002
+  - \`markedHeadingId\`: \`MarkedHeadingId\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u7279\u6B8A\u5316\u7F16\u8F91\u5668\u6807\u9898\u7684\u7B97\u6CD5\uFF0C\u4E0E\u7F16\u8F91\u5668\u76F8\u540C\u3002
+  - \`scrollElement\`: \`string | HTMLElement\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u4E3A\u5B57\u7B26\u65F6\u5E94\u662F\u4E00\u4E2A\u5143\u7D20\u9009\u62E9\u5668\u3002\u4EC5\u9884\u89C8\u6A21\u5F0F\u4E2D\uFF0C\u6574\u9875\u6EDA\u52A8\u65F6\uFF0C\u8BBE\u7F6E\u4E3A\`document.documentElement\`\u3002
+  - \`theme\`: \`'light' | 'dark'\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u5F53\u9700\u8981\u5207\u6362\u4E3B\u9898\u65F6\u63D0\u4F9B\uFF0C\u540C\u7F16\u8F91\u5668\u7684\`theme\`\u3002
+
+- **events**
+
+  - \`onClick\`: \`(e: MouseEvent, t: TocItem) => void\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u5BFC\u822A\u70B9\u51FB\u4E8B\u4EF6\u3002
+
+> \`scrollElement\`\u8BF4\u660E\uFF1A\u4EC5\u9884\u89C8\u4E0B\uFF0C\u8BE5\u5143\u7D20\u5FC5\u987B\u5DF2\u5B9A\u4F4D\u7684\u5E76\u4E14\u652F\u6301\u6EDA\u52A8\u3002
+
+\`\`\`jsx
+const editorId = 'my-editor';
+
+export default () => {
+  const [state] = useState({
+    text: '# \u6807\u9898',
+    scrollElement: document.documentElement
+  });
+
+  return (
+    <>
+      <MdEditor modelValue={state.text} editorId={editorId} previewOnly />
+      <MdEditor.MdCatalog editorId={editorId} scrollElement={state.scrollElement} />
+    </>
+  );
+};
+\`\`\`
+
+## \u270D\uFE0F \u7F16\u8F91\u6B64\u9875\u9762
+
+[doc-zh-CN](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/doc-zh-CN.md)
+`;const i="doc-preview";var b=()=>{const e=m(l=>l),[s,d]=t.exports.useState(()=>e.lang==="zh-CN"?r:o),a=()=>{d(e.lang==="en-US"?o:r)};return t.exports.useEffect(a,[e.lang]),n.createElement("div",{className:"container"},n.createElement("div",{className:"doc"},n.createElement(g,{editorId:i,modelValue:s}),n.createElement(c,{editorId:i})))};export{b as default};
