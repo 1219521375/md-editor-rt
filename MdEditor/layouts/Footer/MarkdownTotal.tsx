@@ -9,9 +9,9 @@ export default ({ modelValue }: { modelValue: string }) => {
     return (
       <div className={`${prefix}-footer-item`}>
         <label className={`${prefix}-footer-label`}>
-          {usedLanguageText.footer?.markdownTotal}:
+          {`${usedLanguageText.footer?.markdownTotal}:`}
         </label>
-        <span>{modelValue.length}</span>
+        <span>{modelValue.length || 0}</span>
       </div>
     );
   }, [usedLanguageText, modelValue]);
