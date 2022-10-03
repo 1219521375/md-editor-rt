@@ -1,4 +1,4 @@
-import{u as m,r as t,R as n}from"./index.98f86952.js";import{I as c}from"./index.77282ee1.js";import{I as g}from"./index.70b2847a.js";var o=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
+import{u as m,r as t,R as n}from"./index.5f5767f0.js";import{I as c}from"./index.0f1dfc7e.js";import{I as g}from"./index.13101c20.js";var o=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
 
 ## \u{1F92F} Props
 
@@ -243,7 +243,7 @@ import{u as m,r as t,R as n}from"./index.98f86952.js";import{I as c}from"./index
     return (
       <MdEditor
         modelValue=""
-        toolbars=['github', '=', 0]
+        toolbars={['github', '=', 0]}
         defToolbars={[
           <NormalToolbar
             title="mark"
@@ -397,6 +397,26 @@ import{u as m,r as t,R as n}from"./index.98f86952.js";import{I as c}from"./index
 
   export default () => {
     return <MdEditor noIconfont />;
+  };
+  \`\`\`
+
+### \u{1F485} formatCopiedText
+
+- **type**: \`(text: string) => string\`
+- **default**: \`(text) => text\`
+
+  Format copied code
+
+  \`\`\`jsx
+  import MdEditor from 'md-editor-rt';
+  import 'md-editor-rt/lib/style.css';
+
+  export default () => {
+    const formatCopiedText = (text: string) => {
+      return \`\${text}  - from md-editor-rt\`;
+    };
+
+    return <MdEditor formatCopiedText={formatCopiedText} />;
   };
   \`\`\`
 
@@ -927,6 +947,7 @@ usage:
   - \`markedHeadingId\`: \`MarkedHeadingId\`, not necessary, same as editor.
   - \`scrollElement\`: \`string | HTMLElement\`, not necessary, it is an element selector when its type is string. When \`previewOnly\` eq \`true\`, it is usually set to \`document.documentElement\`.
   - \`theme\`: 'light' | 'dark', not necessary, provide it when you want to change theme online, it is the same as Editor \`theme\`.
+  - \`offsetTop\`: \`number\`, not necessary, highlight current item of catalogs when title is \`offsetTop\` pixels from the top, defalut 20.
 
 - **events**
 
@@ -1243,7 +1264,7 @@ export default () => {
     return (
       <MdEditor
         modelValue=""
-        toolbars=['github', '=', 0]
+        toolbars={['github', '=', 0]}
         defToolbars={[
           <NormalToolbar
             title="mark"
@@ -1398,6 +1419,26 @@ export default () => {
 
   export default () => {
     return <MdEditor noIconfont />;
+  };
+  \`\`\`
+
+### \u{1F485} formatCopiedText
+
+- **\u7C7B\u578B**\uFF1A\`(text: string) => string\`
+- **\u9ED8\u8BA4\u503C**\uFF1A\`(text) => text\`
+
+  \u683C\u5F0F\u5316\u590D\u5236\u4EE3\u7801
+
+  \`\`\`jsx
+  import MdEditor from 'md-editor-rt';
+  import 'md-editor-rt/lib/style.css';
+
+  export default () => {
+    const formatCopiedText = (text: string) => {
+      return \`\${text}  - from md-editor-rt\`;
+    };
+
+    return <MdEditor formatCopiedText={formatCopiedText} />;
   };
   \`\`\`
 
@@ -1932,6 +1973,7 @@ async onUploadImg(files, callback) {
   - \`markedHeadingId\`: \`MarkedHeadingId\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u7279\u6B8A\u5316\u7F16\u8F91\u5668\u6807\u9898\u7684\u7B97\u6CD5\uFF0C\u4E0E\u7F16\u8F91\u5668\u76F8\u540C\u3002
   - \`scrollElement\`: \`string | HTMLElement\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u4E3A\u5B57\u7B26\u65F6\u5E94\u662F\u4E00\u4E2A\u5143\u7D20\u9009\u62E9\u5668\u3002\u4EC5\u9884\u89C8\u6A21\u5F0F\u4E2D\uFF0C\u6574\u9875\u6EDA\u52A8\u65F6\uFF0C\u8BBE\u7F6E\u4E3A\`document.documentElement\`\u3002
   - \`theme\`: \`'light' | 'dark'\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u5F53\u9700\u8981\u5207\u6362\u4E3B\u9898\u65F6\u63D0\u4F9B\uFF0C\u540C\u7F16\u8F91\u5668\u7684\`theme\`\u3002
+  - \`offsetTop\`: \`number\`\uFF0C\u975E\u5FC5\u987B\uFF0C\u6807\u9898\u8DDD\u79BB\u9876\u90E8\u8BE5\u50CF\u7D20\u65F6\u9AD8\u4EAE\u5F53\u524D\u76EE\u5F55\u9879\uFF0C\u9ED8\u8BA4 20 \u50CF\u7D20\u3002
 
 - **events**
 
