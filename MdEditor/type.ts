@@ -66,7 +66,7 @@ export interface StaticTextDefaultValue {
     descLable?: string;
     descLablePlaceHolder?: string;
     urlLable?: string;
-    UrlLablePlaceHolder?: string;
+    urlLablePlaceHolder?: string;
     buttonOK?: string;
   };
   clipModalTips?: {
@@ -198,6 +198,7 @@ export interface EditorProp {
   defFooters?: Array<string | ReactElement>;
   noIconfont?: boolean;
   formatCopiedText?: (text: string) => string;
+  noUploadImg?: boolean;
 }
 
 export interface ContentType {

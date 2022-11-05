@@ -28,6 +28,7 @@ export interface ToolbarProp {
   updateSetting: (k: keyof SettingType, shouldScreenFull?: boolean) => void;
   tableShape: [number, number];
   defToolbars?: Array<ReactElement>;
+  noUploadImg: boolean;
 }
 
 let splitNum = 0;
@@ -128,7 +129,7 @@ const Toolbar = (props: ToolbarProp) => {
       >
         <div className={`${prefix}-toolbar-item`} title={ult.toolbarTips?.title}>
           <svg className={`${prefix}-icon`} aria-hidden="true">
-            <use xlinkHref="#icon-title" />
+            <use xlinkHref="#md-editor-icon-title" />
           </svg>
         </div>
       </Dropdown>
@@ -168,10 +169,12 @@ const Toolbar = (props: ToolbarProp) => {
             <li
               className={`${prefix}-menu-item`}
               onClick={() => {
-                setModalData({
-                  ...modalData,
-                  type: 'image',
-                  clipVisible: true
+                setModalData((_modalData) => {
+                  return {
+                    ..._modalData,
+                    type: 'image',
+                    linkVisible: true
+                  };
                 });
               }}
             >
@@ -183,7 +186,7 @@ const Toolbar = (props: ToolbarProp) => {
       >
         <div className={`${prefix}-toolbar-item`} title={ult.toolbarTips?.image}>
           <svg className={`${prefix}-icon`} aria-hidden="true">
-            <use xlinkHref="#icon-image" />
+            <use xlinkHref="#md-editor-icon-image" />
           </svg>
         </div>
       </Dropdown>
@@ -203,7 +206,7 @@ const Toolbar = (props: ToolbarProp) => {
       >
         <div className={`${prefix}-toolbar-item`} title={ult.toolbarTips?.table}>
           <svg className={`${prefix}-icon`} aria-hidden="true">
-            <use xlinkHref="#icon-table" />
+            <use xlinkHref="#md-editor-icon-table" />
           </svg>
         </div>
       </Dropdown>
@@ -288,7 +291,7 @@ const Toolbar = (props: ToolbarProp) => {
       >
         <div className={`${prefix}-toolbar-item`} title={ult.toolbarTips?.mermaid}>
           <svg className={`${prefix}-icon`} aria-hidden="true">
-            <use xlinkHref="#icon-mermaid" />
+            <use xlinkHref="#md-editor-icon-mermaid" />
           </svg>
         </div>
       </Dropdown>
@@ -325,7 +328,7 @@ const Toolbar = (props: ToolbarProp) => {
       >
         <div className={`${prefix}-toolbar-item`} title={ult.toolbarTips?.katex}>
           <svg className={`${prefix}-icon`} aria-hidden="true">
-            <use xlinkHref="#icon-formula" />
+            <use xlinkHref="#md-editor-icon-formula" />
           </svg>
         </div>
       </Dropdown>
@@ -350,7 +353,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-bold"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-bold" />
+                  <use xlinkHref="#md-editor-icon-bold" />
                 </svg>
               </div>
             );
@@ -366,7 +369,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-underline"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-underline" />
+                  <use xlinkHref="#md-editor-icon-underline" />
                 </svg>
               </div>
             );
@@ -382,7 +385,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-italic"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-italic" />
+                  <use xlinkHref="#md-editor-icon-italic" />
                 </svg>
               </div>
             );
@@ -398,7 +401,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-strikeThrough"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-strike-through" />
+                  <use xlinkHref="#md-editor-icon-strike-through" />
                 </svg>
               </div>
             );
@@ -417,7 +420,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-sub"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-sub" />
+                  <use xlinkHref="#md-editor-icon-sub" />
                 </svg>
               </div>
             );
@@ -433,7 +436,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-sup"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-sup" />
+                  <use xlinkHref="#md-editor-icon-sup" />
                 </svg>
               </div>
             );
@@ -449,7 +452,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-quote"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-quote" />
+                  <use xlinkHref="#md-editor-icon-quote" />
                 </svg>
               </div>
             );
@@ -465,7 +468,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-unorderedList"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-unordered-list" />
+                  <use xlinkHref="#md-editor-icon-unordered-list" />
                 </svg>
               </div>
             );
@@ -481,7 +484,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-orderedList"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-ordered-list" />
+                  <use xlinkHref="#md-editor-icon-ordered-list" />
                 </svg>
               </div>
             );
@@ -497,7 +500,7 @@ const Toolbar = (props: ToolbarProp) => {
                 }}
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-task" />
+                  <use xlinkHref="#md-editor-icon-task" />
                 </svg>
               </div>
             );
@@ -514,7 +517,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-codeRow"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-code-row" />
+                  <use xlinkHref="#md-editor-icon-code-row" />
                 </svg>
               </div>
             );
@@ -530,7 +533,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-code"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-code" />
+                  <use xlinkHref="#md-editor-icon-code" />
                 </svg>
               </div>
             );
@@ -550,13 +553,34 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-link"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-link" />
+                  <use xlinkHref="#md-editor-icon-link" />
                 </svg>
               </div>
             );
           }
           case 'image': {
-            return ImageDropdown;
+            return props.noUploadImg ? (
+              <div
+                className={`${prefix}-toolbar-item`}
+                title={ult.toolbarTips?.image}
+                onClick={() => {
+                  setModalData((_modalData) => {
+                    return {
+                      ..._modalData,
+                      type: 'image',
+                      linkVisible: true
+                    };
+                  });
+                }}
+                key="bar-image-no-upload"
+              >
+                <svg className={`${prefix}-icon`} aria-hidden="true">
+                  <use xlinkHref="#md-editor-icon-image" />
+                </svg>
+              </div>
+            ) : (
+              ImageDropdown
+            );
           }
           case 'table': {
             return TableDropdown;
@@ -572,7 +596,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-revoke"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-revoke" />
+                  <use xlinkHref="#md-editor-icon-revoke" />
                 </svg>
               </div>
             );
@@ -588,7 +612,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-next"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-next" />
+                  <use xlinkHref="#md-editor-icon-next" />
                 </svg>
               </div>
             );
@@ -604,7 +628,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-save"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-baocun" />
+                  <use xlinkHref="#md-editor-icon-baocun" />
                 </svg>
               </div>
             );
@@ -622,7 +646,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-prettier"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-prettier" />
+                  <use xlinkHref="#md-editor-icon-prettier" />
                 </svg>
               </div>
             );
@@ -640,7 +664,9 @@ const Toolbar = (props: ToolbarProp) => {
                 >
                   <svg className={`${prefix}-icon`} aria-hidden="true">
                     <use
-                      xlinkHref={`#icon-${setting.pageFullScreen ? 'suoxiao' : 'fangda'}`}
+                      xlinkHref={`#md-editor-icon-${
+                        setting.pageFullScreen ? 'suoxiao' : 'fangda'
+                      }`}
                     />
                   </svg>
                 </div>
@@ -657,7 +683,7 @@ const Toolbar = (props: ToolbarProp) => {
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
                   <use
-                    xlinkHref={`#icon-${
+                    xlinkHref={`#md-editor-icon-${
                       setting.fullscreen ? 'fullScreen-exit' : 'fullScreen'
                     }`}
                   />
@@ -676,7 +702,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-catalog"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-catalog" />
+                  <use xlinkHref="#md-editor-icon-catalog" />
                 </svg>
               </div>
             );
@@ -692,7 +718,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-preview"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-preview" />
+                  <use xlinkHref="#md-editor-icon-preview" />
                 </svg>
               </div>
             );
@@ -708,7 +734,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-htmlPreview"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-coding" />
+                  <use xlinkHref="#md-editor-icon-coding" />
                 </svg>
               </div>
             );
@@ -722,7 +748,7 @@ const Toolbar = (props: ToolbarProp) => {
                 key="bar-github"
               >
                 <svg className={`${prefix}-icon`} aria-hidden="true">
-                  <use xlinkHref="#icon-github" />
+                  <use xlinkHref="#md-editor-icon-github" />
                 </svg>
               </div>
             );

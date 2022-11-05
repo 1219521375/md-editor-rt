@@ -15,7 +15,7 @@ export const defaultEditorId = 'md-editor-rt';
 export const iconScriptId = defaultEditorId;
 
 // 字体链接
-export const iconfontUrl = 'https://at.alicdn.com/t/c/font_2605852_lxu1yrwwsea.js';
+export const iconfontUrl = 'https://at.alicdn.com/t/c/font_2605852_4cjr7o5jo0f.js';
 
 export const cdnBase = 'https://cdnjs.cloudflare.com/ajax/libs';
 
@@ -123,7 +123,7 @@ export const staticTextDefault: StaticTextDefault = {
       descLable: '链接描述：',
       descLablePlaceHolder: '请输入描述...',
       urlLable: '链接地址：',
-      UrlLablePlaceHolder: '请输入链接...',
+      urlLablePlaceHolder: '请输入链接...',
       buttonOK: '确定'
     },
     clipModalTips: {
@@ -203,7 +203,7 @@ export const staticTextDefault: StaticTextDefault = {
       descLable: 'Desc:',
       descLablePlaceHolder: 'Enter a description...',
       urlLable: 'Link:',
-      UrlLablePlaceHolder: 'Enter a link...',
+      urlLablePlaceHolder: 'Enter a link...',
       buttonOK: 'OK'
     },
     clipModalTips: {
@@ -303,7 +303,8 @@ export const defaultProps = {
   onError: () => {},
   markedHeadingId: (text: string) => text,
   footers: allFooter,
-  defFooters: []
+  defFooters: [],
+  noUploadImg: false
 };
 
 export const configOption: ConfigOption = {
