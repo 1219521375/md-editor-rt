@@ -1,4 +1,4 @@
-import{u as m,r as t,R as e}from"./index.5f5767f0.js";import{I as c}from"./index.0f1dfc7e.js";import{I as p}from"./index.13101c20.js";var r=`## \u{1F601} Basic Usage
+import{u as m,r as t,R as e}from"./index.0714539a.js";import{I as c}from"./index.7ec26155.js";import{I as p}from"./index.8a626ed8.js";var r=`## \u{1F601} Basic Usage
 
 It has been developing iteratively, so update the latest version please. Publish logs: [releases](https://github.com/imzbf/md-editor-rt/releases)
 
@@ -248,6 +248,7 @@ MdEditor.config({
           quote: 'quote',
           unorderedList: 'unordered list',
           orderedList: 'ordered list',
+          task: 'task list',
           codeRow: 'inline code',
           code: 'block-level code',
           link: 'link',
@@ -284,7 +285,7 @@ MdEditor.config({
           descLable: 'Desc:',
           descLablePlaceHolder: 'Enter a description...',
           urlLable: 'Link:',
-          UrlLablePlaceHolder: 'Enter a link...',
+          urlLablePlaceHolder: 'Enter a link...',
           buttonOK: 'OK'
         },
         clipModalTips: {
@@ -326,6 +327,8 @@ export default () => {
   return <MdEditor modelValue={text} onChange={setText} language={language} />;
 };
 \`\`\`
+
+You can install the existing language also: [md-editor-extension](https://github.com/imzbf/md-editor-extension). Refer to extension library for the usage and the way to contribute~
 
 ### \u{1F6EC} Modify Heading Structure
 
@@ -454,11 +457,11 @@ To get complete code, refer to [docs](https://github.com/imzbf/md-editor-rt/blob
   --md-scrollbar-thumb-avtive-color: if(@isDark, #3a3a3a, #00000061);
 }
 
-.md {
+.md-editor {
   .css-vars(false);
 }
 
-.md-dark {
+.md-editor-dark {
   .css-vars(true);
 }
 \`\`\`
@@ -466,7 +469,7 @@ To get complete code, refer to [docs](https://github.com/imzbf/md-editor-rt/blob
 Change background color in dark mode:
 
 \`\`\`css
-.md-dark {
+.md-editor-dark {
   --md-bk-color: #333 !important;
 }
 \`\`\`
@@ -797,6 +800,7 @@ MdEditor.config({
           quote: '\u5F15\u7528',
           unorderedList: '\u65E0\u5E8F\u5217\u8868',
           orderedList: '\u6709\u5E8F\u5217\u8868',
+          task: '\u4EFB\u52A1\u5217\u8868',
           codeRow: '\u884C\u5185\u4EE3\u7801',
           code: '\u5757\u7EA7\u4EE3\u7801',
           link: '\u94FE\u63A5',
@@ -833,7 +837,7 @@ MdEditor.config({
           descLable: '\u94FE\u63A5\u63CF\u8FF0\uFF1A',
           descLablePlaceHolder: '\u8BF7\u8F93\u5165\u63CF\u8FF0...',
           urlLable: '\u94FE\u63A5\u5730\u5740\uFF1A',
-          UrlLablePlaceHolder: '\u8BF7\u8F93\u5165\u94FE\u63A5...',
+          urlLablePlaceHolder: '\u8BF7\u8F93\u5165\u94FE\u63A5...',
           buttonOK: '\u786E\u5B9A'
         },
         clipModalTips: {
@@ -875,6 +879,8 @@ export default () => {
   return <MdEditor modelValue={text} onChange={setText} language={language} />;
 };
 \`\`\`
+
+\u4F60\u4E5F\u53EF\u4EE5\u4F7F\u7528\u73B0\u6210\u7684\u6269\u5C55\u8BED\u8A00\uFF1A[md-editor-extension](https://github.com/imzbf/md-editor-extension)\u3002\u4F7F\u7528\u53CA\u8D21\u732E\u65B9\u5F0F\u89C1\u6269\u5C55\u5E93\u6587\u6863~
 
 ### \u{1F6EC} \u81EA\u5B9A\u4E49\u76EE\u5F55\u7ED3\u6784
 
@@ -1011,11 +1017,11 @@ export default () => {
   --md-scrollbar-thumb-avtive-color: if(@isDark, #3a3a3a, #00000061);
 }
 
-.md {
+.md-editor {
   .css-vars(false);
 }
 
-.md-dark {
+.md-editor-dark {
   .css-vars(true);
 }
 \`\`\`
@@ -1023,7 +1029,7 @@ export default () => {
 \u53EA\u9700\u8981\u8C03\u6574\u5BF9\u5E94\u7684 css \u53D8\u91CF\uFF0C\u6BD4\u5982\u8C03\u6574\u6697\u591C\u6A21\u5F0F\u4E0B\u7684\u80CC\u666F\uFF1A
 
 \`\`\`css
-.md-dark {
+.md-editor-dark {
   --md-bk-color: #333 !important;
 }
 \`\`\`

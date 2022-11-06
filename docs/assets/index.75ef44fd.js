@@ -1,4 +1,4 @@
-import{u as a,r as i,R as e}from"./index.5f5767f0.js";import{I as h}from"./index.13101c20.js";var s=`## About md-editor-rt
+import{u as a,r as i,R as e}from"./index.0714539a.js";import{I as h}from"./index.8a626ed8.js";var s=`## About md-editor-rt
 
 ![](https://img.shields.io/github/stars/imzbf/md-editor-rt?style=social) ![](https://img.shields.io/npm/dm/md-editor-rt) ![](https://img.shields.io/bundlephobia/min/md-editor-rt) ![](https://img.shields.io/github/license/imzbf/md-editor-rt) ![](https://img.shields.io/github/package-json/v/imzbf/md-editor-rt) ![](https://img.shields.io/badge/ssr-%3E1.6.0-brightgreen)
 
@@ -11,8 +11,7 @@ Markdown editor for react, developed by jsx and typescript, dark theme, beautify
 ## Connect
 
 1. Email\uFF1Azbfcqtl@gmail.com
-2. My blog\uFF1A[imzbf.cc](https://imzbf.cc/message)
-3. Github issue\uFF1A[github issues](https://github.com/imzbf/md-editor-rt/issues)
+2. Github issue\uFF1A[github issues](https://github.com/imzbf/md-editor-rt/issues)
 
 ## About docs
 
@@ -30,6 +29,5 @@ Markdown \u7F16\u8F91\u5668\uFF0Creact \u7248\u672C\uFF0C\u4F7F\u7528 jsx \u548C
 ## \u53CD\u9988\u8054\u7CFB
 
 1. \u90AE\u7BB1\uFF1Azbfcqtl@gmail.com
-2. \u535A\u5BA2\u7559\u8A00\uFF1A[imzbf.cc](https://imzbf.cc/message)
-3. issue \u7BA1\u7406\uFF1A[github issues](https://github.com/imzbf/md-editor-rt/issues)
-`;const b=()=>{const t=a(n=>n),[o,d]=i.exports.useState(()=>t.lang==="zh-CN"?r:s),m=()=>{d(t.lang==="en-US"?s:r)};return i.exports.useEffect(m,[t.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement(h,{editorId:"md-about",modelValue:o})))};export{b as default};
+2. issue \u7BA1\u7406\uFF1A[github issues](https://github.com/imzbf/md-editor-rt/issues)
+`;const p=()=>{const t=a(m=>m),[o,d]=i.exports.useState(()=>t.lang==="zh-CN"?r:s),n=()=>{d(t.lang==="en-US"?s:r)};return i.exports.useEffect(n,[t.lang]),e.createElement("div",{className:"container"},e.createElement("div",{className:"doc"},e.createElement(h,{editorId:"md-about",modelValue:o})))};export{p as default};

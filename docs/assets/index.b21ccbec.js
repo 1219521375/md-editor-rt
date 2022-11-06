@@ -1,4 +1,4 @@
-import{u as m,r as t,R as n}from"./index.5f5767f0.js";import{I as c}from"./index.0f1dfc7e.js";import{I as g}from"./index.13101c20.js";var o=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
+import{u as m,r as t,R as n}from"./index.0714539a.js";import{I as c}from"./index.7ec26155.js";import{I as u}from"./index.8a626ed8.js";var o=`> Use it online: [Go](https://codesandbox.io/s/elated-khorana-65jmr)
 
 ## \u{1F92F} Props
 
@@ -73,6 +73,8 @@ import{u as m,r as t,R as n}from"./index.5f5767f0.js";import{I as c}from"./index
 
   Build-in language('zh-CN', 'en-US').
 
+  You can install the existing language also: [md-editor-extension](https://github.com/imzbf/md-editor-extension). Refer to extension library for the usage and the way to contribute~
+
 ### \u{1F9F1} toolbars
 
 - **type**: \`Array\`
@@ -96,6 +98,7 @@ import{u as m,r as t,R as n}from"./index.5f5767f0.js";import{I as c}from"./index
     'quote',
     'unorderedList',
     'orderedList',
+    'task',
     '-',
     'codeRow',
     'code',
@@ -249,7 +252,7 @@ import{u as m,r as t,R as n}from"./index.5f5767f0.js";import{I as c}from"./index
             title="mark"
             onClick={handler}
             trigger={
-              <svg className="md-icon" aria-hidden="true">
+              <svg className="md-editor-icon" aria-hidden="true">
                 <use xlinkHref="#icon-mark"></use>
               </svg>
             }
@@ -385,9 +388,10 @@ import{u as m,r as t,R as n}from"./index.5f5767f0.js";import{I as c}from"./index
 
 ### \u{1F91E}\u{1F3FC} noIconfont
 
-- **\u7C7B\u578B**: \`boolean\`
-- **\u9ED8\u8BA4\u503C**: \`true\`
-- **\u8BF4\u660E**: Not append iconfont script, [download](https://at.alicdn.com/t/font_2605852_pqekijay2ij.js) and import it by yourself.
+- **type**: \`boolean\`
+- **default**:\`true\`
+
+  Not append iconfont script, [download](https://at.alicdn.com/t/font_2605852_pqekijay2ij.js) and import it by yourself.
 
   \`\`\`jsx
   import MdEditor from 'md-editor-rt';
@@ -417,6 +421,22 @@ import{u as m,r as t,R as n}from"./index.5f5767f0.js";import{I as c}from"./index
     };
 
     return <MdEditor formatCopiedText={formatCopiedText} />;
+  };
+  \`\`\`
+
+### \u{1F979} noUploadImg
+
+- **type**: \`boolean\`
+- **default**: \`false\`
+
+  Not show the entrance to upload pictures
+
+  \`\`\`jsx
+  import MdEditor from 'md-editor-rt';
+  import 'md-editor-rt/lib/style.css';
+
+  export default () => {
+    return <MdEditor noUploadImg />;
   };
   \`\`\`
 
@@ -616,7 +636,7 @@ Custom \`marked renderer\` in \`MdEditor.config(option: ConfigOption)\`.
             descLable: 'Desc:',
             descLablePlaceHolder: 'Enter a description...',
             urlLable: 'Link:',
-            UrlLablePlaceHolder: 'Enter a link...',
+            urlLablePlaceHolder: 'Enter a link...',
             buttonOK: 'OK'
           },
           clipModalTips: {
@@ -782,7 +802,7 @@ usage:
     <MdEditor.NormalToolbar
       title="mark"
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-mark"></use>
         </svg>
       }
@@ -842,7 +862,7 @@ usage:
         </>
       }
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-emoji"></use>
         </svg>
       }
@@ -884,8 +904,8 @@ usage:
       visible={state.visible}
       isFullscreen={state.modalFullscreen}
       showAdjust
-      title="\u5F39\u7A97\u9884\u89C8"
-      modalTitle="\u7F16\u8F91\u9884\u89C8"
+      title="title"
+      modalTitle="modalTitle"
       width="870px"
       height="600px"
       onClick={() => {
@@ -907,7 +927,7 @@ usage:
         });
       }}
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-read"></use>
         </svg>
       }
@@ -1061,6 +1081,8 @@ export default () => {
 
   \u5185\u7F6E\u4E2D\u82F1\u6587(\`'zh-CN'\`, \`'en-US'\`)\uFF0C\u53EF\u81EA\u884C\u6269\u5C55\u5176\u4ED6\u8BED\u8A00\uFF0C\u540C\u65F6\u53EF\u8986\u76D6\u5185\u7F6E\u7684\u4E2D\u82F1\u6587\u3002
 
+  \u4F60\u4E5F\u53EF\u4EE5\u4F7F\u7528\u73B0\u6210\u7684\u6269\u5C55\u8BED\u8A00\uFF1A[md-editor-extension](https://github.com/imzbf/md-editor-extension)\u3002\u4F7F\u7528\u53CA\u8D21\u732E\u65B9\u5F0F\u89C1\u6269\u5C55\u5E93\u6587\u6863~
+
 ### \u{1F9F1} toolbars
 
 - **\u7C7B\u578B**\uFF1A\`Array\`
@@ -1084,6 +1106,7 @@ export default () => {
     'quote',
     'unorderedList',
     'orderedList',
+    'task',
     '-',
     'codeRow',
     'code',
@@ -1270,7 +1293,7 @@ export default () => {
             title="mark"
             onClick={handler}
             trigger={
-              <svg className="md-icon" aria-hidden="true">
+              <svg className="md-editor-icon" aria-hidden="true">
                 <use xlinkHref="#icon-mark"></use>
               </svg>
             }
@@ -1439,6 +1462,22 @@ export default () => {
     };
 
     return <MdEditor formatCopiedText={formatCopiedText} />;
+  };
+  \`\`\`
+
+### \u{1F979} noUploadImg
+
+- **type**: \`boolean\`
+- **default**: \`false\`
+
+  \u5DE5\u5177\u680F\u4E0D\u663E\u793A\u4E0A\u4F20\u56FE\u7247\u5165\u53E3\u3002
+
+  \`\`\`jsx
+  import MdEditor from 'md-editor-rt';
+  import 'md-editor-rt/lib/style.css';
+
+  export default () => {
+    return <MdEditor noUploadImg />;
   };
   \`\`\`
 
@@ -1639,7 +1678,7 @@ async onUploadImg(files, callback) {
             descLable: '\u94FE\u63A5\u63CF\u8FF0\uFF1A',
             descLablePlaceHolder: '\u8BF7\u8F93\u5165\u63CF\u8FF0...',
             urlLable: '\u94FE\u63A5\u5730\u5740\uFF1A',
-            UrlLablePlaceHolder: '\u8BF7\u8F93\u5165\u94FE\u63A5...',
+            urlLablePlaceHolder: '\u8BF7\u8F93\u5165\u94FE\u63A5...',
             buttonOK: '\u786E\u5B9A'
           },
           clipModalTips: {
@@ -1812,7 +1851,7 @@ async onUploadImg(files, callback) {
     <MdEditor.NormalToolbar
       title="\u6807\u8BB0"
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-mark"></use>
         </svg>
       }
@@ -1866,7 +1905,7 @@ async onUploadImg(files, callback) {
         </div>
       }
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-emoji"></use>
         </svg>
       }
@@ -1933,7 +1972,7 @@ async onUploadImg(files, callback) {
         });
       }}
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-read"></use>
         </svg>
       }
@@ -2060,7 +2099,7 @@ export default () => {
     <MdEditor.NormalToolbar
       title="\u6807\u8BB0"
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-mark"></use>
         </svg>
       }
@@ -2114,7 +2153,7 @@ export default () => {
         </div>
       }
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-emoji"></use>
         </svg>
       }
@@ -2181,7 +2220,7 @@ export default () => {
         });
       }}
       trigger={
-        <svg className="md-icon" aria-hidden="true">
+        <svg className="md-editor-icon" aria-hidden="true">
           <use xlinkHref="#icon-read"></use>
         </svg>
       }
@@ -2249,4 +2288,4 @@ export default () => {
 ## \u270D\uFE0F \u7F16\u8F91\u6B64\u9875\u9762
 
 [doc-zh-CN](https://github.com/imzbf/md-editor-rt/blob/dev-docs/public/doc-zh-CN.md)
-`;const i="doc-preview";var b=()=>{const e=m(l=>l),[s,d]=t.exports.useState(()=>e.lang==="zh-CN"?r:o),a=()=>{d(e.lang==="en-US"?o:r)};return t.exports.useEffect(a,[e.lang]),n.createElement("div",{className:"container"},n.createElement("div",{className:"doc"},n.createElement(g,{editorId:i,modelValue:s}),n.createElement(c,{editorId:i})))};export{b as default};
+`;const i="doc-preview";var b=()=>{const e=m(l=>l),[s,d]=t.exports.useState(()=>e.lang==="zh-CN"?r:o),a=()=>{d(e.lang==="en-US"?o:r)};return t.exports.useEffect(a,[e.lang]),n.createElement("div",{className:"container"},n.createElement("div",{className:"doc"},n.createElement(u,{editorId:i,modelValue:s}),n.createElement(c,{editorId:i})))};export{b as default};
